@@ -19,10 +19,10 @@
           include "../lib/config.php";
           include "../lib/koneksi.php";
           if ($_GET) {
-            $page = $_GET['pages'];
+            $page = $_GET['module'];
             }
             $username = $_SESSION['username'];
-            $query = mysqli_query($koneksi, "SELECT * FROM tbl_user WHERE username='$username'");
+            $query = mysqli_query($koneksi, "SELECT * FROM admins WHERE username='$username'");
             $user = mysqli_fetch_array($query);
           
           
@@ -46,14 +46,22 @@
             </a>            
           </li>
           <li class="nav-header">MAIN</li>
+          <?php
+            include "../lib/config.php";
+            include "../lib/koneksi.php";
+            $query = mysqli_query($koneksi, "SELECT * FROM modul");
+            $i=1;
+            while($mod=mysqli_fetch_array($query)){                              
+          ?>
           <li class="nav-item">
-            <a href="main.php?pages=booking" class = 'nav-link <?php if ($page == 'booking' OR $page == 'booking_detail') echo " active"; ?> '>
+            <a href="main.php<?= $mod['link'] ?>" class = 'nav-link <?php if ($page == $mod['slug']) echo " active"; ?> '>
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Menu
+                <?= $mod['nama_modul'] ?>
               </p>
             </a>            
           </li>
+          <?php } ?>
           <li class="nav-header">SETTINGS</li>
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
