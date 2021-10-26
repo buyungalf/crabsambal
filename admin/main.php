@@ -4,6 +4,8 @@ session_start();
 if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
     include "index.php";
 } else {
+        include "../lib/koneksi.php";
+        include "../lib/function.php";
         include "template/header.php";
         include "template/sidebar.php";
 

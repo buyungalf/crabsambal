@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="module/kategori_produk/aksi_tambah.php" class="form-horizontal">
+        <form method="post" action="module/kategori_produk/aksi.php" class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nama Kategori</label>
@@ -33,18 +33,10 @@
                 <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori">
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Slug</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="kategori_seo" placeholder="Slug">
-              </div>
-            </div>
-          </div>
           <!-- /.card-body -->
           <div class="card-footer">
           	<button class="btn btn-default float-right ml-2">Batal</button>
-            <button type="submit" class="btn btn-info float-right">Tambah</button>
-            
+            <button type="submit" name="tambah" class="btn btn-info float-right">Tambah</button>            
           </div>
           <!-- /.card-footer -->
         </form>

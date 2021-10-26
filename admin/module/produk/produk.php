@@ -36,7 +36,7 @@
             <th>Berat</th>
             <th>Tgl Masuk</th>
             <th>Gambar</th>
-            <th>Dibeli</th>
+            <th>Terjual</th>
             <th>Diskon</th>
             <th>Aksi</th>
           </tr>
@@ -53,18 +53,18 @@
             <td><?= $i ?>.</td>
             <td><?= $item['nama_produk'] ?></td>
             <td><?= $item['produk_seo'] ?></td>
-            <td><?= substr($item['deskripsi'],0,150) ?> ...</td>
-            <td><?= $item['harga'] ?></td>
+            <td><?= substr($item['deskripsi'],0,150) ?></td>
+            <td>Rp<?= format_rupiah($item['harga']) ?></td>
             <td><?= $item['stok'] ?></td>
-            <td><?= $item['berat'] ?></td>
-            <td><?= $item['tgl_masuk'] ?></td>
+            <td><?= $item['berat'] ?> kg</td>
+            <td><?= tgl_indo($item['tgl_masuk']) ?></td>
             <td><img style="width: 50px" src="asset/images/foto_produk/<?= $item['gambar'] ?>"></td>
             <td><?= $item['dibeli'] ?></td>
-            <td><?= $item['diskon'] ?></td>
+            <td><?= $item['diskon'] ?>%</td>
             <td>
               <div class="input-group-btn">
                 <a href="<?= $admin_url; ?>main.php?module=edit_produk&id_produk=<?= $item['id_produk']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="<?= $admin_url; ?>module/produk_produk/aksi_hapus.php?id_produk=<?= $item['id_produk']; ?>" class="btn btn-danger"><i class="fas fa-power-off"></i></a>
+                <a href="<?= $admin_url; ?>module/produk/aksi.php?aksi=hapus&id_produk=<?= $item['id_produk']; ?>&gambar=<?= $item['gambar'] ?>" class="btn btn-danger"><i class="fas fa-power-off"></i></a>
               </div>
             </td>
           </tr>

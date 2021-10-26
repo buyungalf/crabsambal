@@ -35,8 +35,6 @@
         </thead>
         <tbody>
           <?php
-            include "../lib/config.php";
-            include "../lib/koneksi.php";
             $query = mysqli_query($koneksi, "SELECT * FROM kategori");
             $i=1;
             while($kt=mysqli_fetch_array($query)){                              
@@ -48,7 +46,7 @@
             <td>
               <div class="input-group-btn">
                 <a href="<?= $admin_url; ?>main.php?module=edit_kategori&id_kategori=<?= $kt['id_kategori']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="<?= $admin_url; ?>module/kategori_produk/aksi_hapus.php?id_kategori=<?= $kt['id_kategori']; ?>" class="btn btn-danger"><i class="fas fa-power-off"></i></a>
+                <a href="<?= $admin_url; ?>module/kategori_produk/aksi.php?id_kategori=<?= $kt['id_kategori']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-power-off"></i></a>
               </div>
             </td>
           </tr>

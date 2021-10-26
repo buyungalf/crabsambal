@@ -26,15 +26,13 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="module/kategori_produk/aksi_edit.php" class="form-horizontal">
+        <form method="post" action="module/kategori_produk/aksi.php" class="form-horizontal">
           <?php
-                  include "../lib/config.php";
-                  include "../lib/koneksi.php";
-                  $id_kategori = $_GET['id_kategori'];
-                  $query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE id_kategori='$id_kategori'");
-                  $kt=mysqli_fetch_array($query);
-                ?>
-                <input type="hidden" name="id_kategori" value="<?= $id_kategori ?>">
+            $id_kategori = $_GET['id_kategori'];
+            $query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE id_kategori='$id_kategori'");
+            $kt=mysqli_fetch_array($query);
+          ?>
+          <input type="hidden" name="id_kategori" value="<?= $id_kategori ?>">
           <div class="card-body">
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nama Kategori</label>
@@ -42,17 +40,11 @@
                 <input type="text" class="form-control" name="nama_kategori" value="<?= $kt['nama_kategori'] ?>">
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Slug</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="kategori_seo" value="<?= $kt['kategori_seo'] ?>">
-              </div>
-            </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
             <button class="btn btn-default float-right ml-2">Batal</button>
-            <button type="submit" class="btn btn-info float-right">Edit</button>
+            <button type="submit" name="edit" class="btn btn-info float-right">Edit</button>
             
           </div>
           <!-- /.card-footer -->

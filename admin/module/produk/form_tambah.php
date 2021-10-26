@@ -25,18 +25,12 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="module/produk/aksi_tambah.php" class="form-horizontal" enctype="multipart/form-data">
+        <form method="post" action="module/produk/aksi.php" class="form-horizontal" enctype="multipart/form-data">
           <div class="card-body">
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nama Produk</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name="nama_produk" placeholder="Nama Produk">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Nama Produk SEO</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="produk_seo" placeholder="Nama Produk SEO">
               </div>
             </div>
             <div class="form-group row">
@@ -112,7 +106,7 @@
           <!-- /.card-body -->
           <div class="card-footer">
           	<button class="btn btn-default float-right ml-2">Batal</button>
-            <button type="submit" class="btn btn-info float-right">Tambah</button>
+            <button type="submit" name="tambah" class="btn btn-info float-right">Tambah</button>
             
           </div>
           <!-- /.card-footer -->
