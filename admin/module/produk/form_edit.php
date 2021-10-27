@@ -33,11 +33,13 @@
 
             $id_produk = $item['id_produk'];
             $nama_produk = $item['nama_produk'];
+            $kt = $item['id_kategori'];
             $produk_seo = $item['produk_seo'];
             $deskripsi = $item['deskripsi'];
             $harga = $item['harga'];
             $stok = $item['stok'];
             $berat = $item['berat'];
+            $gambar = $item['gambar'];
             $tgl_masuk = $item['tgl_masuk'];
             $dibeli = $item['dibeli']; 
             $diskon = $item['diskon'];
@@ -54,12 +56,12 @@
               <label class="col-sm-2 col-form-label">Kategori Produk</label>
               <div class="col-sm-10">
               <select name="id_kategori" class="form-control select2" style="width: 100%;">
-                <option selected="selected">-- Pilih kategori produk --</option>
+                <option>-- Pilih kategori produk --</option>
                 <?php
                   $q = mysqli_query($koneksi, "SELECT * FROM kategori");
                   while($item=mysqli_fetch_array($q)){
                 ?>                          
-                <option value="<?php echo $item['id_kategori']; ?>">
+                <option value="<?php echo $item['id_kategori']; ?>" <?php if ($kt == $item['id_kategori']) echo " selected='selected'"; ?>>
                   <?php echo $item['nama_kategori']; ?>
                 </option>
                 <?php } ?>

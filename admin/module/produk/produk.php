@@ -64,7 +64,7 @@
             <td>
               <div class="input-group-btn">
                 <a href="<?= $admin_url; ?>main.php?module=edit_produk&id_produk=<?= $item['id_produk']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="<?= $admin_url; ?>module/produk/aksi.php?aksi=hapus&id_produk=<?= $item['id_produk']; ?>&gambar=<?= $item['gambar'] ?>" class="btn btn-danger"><i class="fas fa-power-off"></i></a>
+                <a href="<?= $admin_url; ?>module/produk/aksi.php?aksi=hapus&id_produk=<?= $item['id_produk']; ?>&gambar=<?= $item['gambar'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
               </div>
             </td>
           </tr>
