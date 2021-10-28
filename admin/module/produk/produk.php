@@ -58,7 +58,7 @@
             <td><?= $item['stok'] ?></td>
             <td><?= $item['berat'] ?> kg</td>
             <td><?= tgl_indo($item['tgl_masuk']) ?></td>
-            <td><img style="width: 50px" src="asset/images/foto_produk/<?= $item['gambar'] ?>"></td>
+            <td><img style="width: 50px" src="<?= $base_url . '/assets/img/product/' . $item['gambar'] ?>"></td>
             <td><?= $item['dibeli'] ?></td>
             <td><?= $item['diskon'] ?>%</td>
             <td>
