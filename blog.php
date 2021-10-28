@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__links">
-                    <a href="./">Home</a>
+                    <a href="<?= $base_url ?>">Home</a>
                     <span>Blog</span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="./assets/img/blog/blog-1.jpg">
+                    <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-1.jpg">
                         <div class="blog__pic__inner">
                             <div class="label">Recipes</div>
                             <ul>
@@ -54,11 +54,11 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="./blog-details.php">READ MORE</a>
+                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="./assets/img/blog/blog-2.jpg">
+                    <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-2.jpg">
                         <div class="blog__pic__inner">
                             <div class="label">Recipes</div>
                             <ul>
@@ -76,11 +76,11 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="./blog-details.php">READ MORE</a>
+                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="./assets/img/blog/blog-3.jpg">
+                    <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-3.jpg">
                         <div class="blog__pic__inner">
                             <div class="label">Recipes</div>
                             <ul>
@@ -98,11 +98,11 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="./blog-details.php">READ MORE</a>
+                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="./assets/img/blog/blog-4.jpg">
+                    <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-4.jpg">
                         <div class="blog__pic__inner">
                             <div class="label">Recipes</div>
                             <ul>
@@ -120,7 +120,7 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="./blog-details.php">READ MORE</a>
+                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="shop__pagination">
@@ -153,7 +153,7 @@
                         <div class="blog__sidebar__recent">
                             <a href="#" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
-                                    <img src="./assets/img/blog/br-1.jpg" alt="" />
+                                    <img src="assets/img/blog/br-1.jpg" alt="" />
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h4>Secret To Cooking Vegetables</h4>
@@ -162,7 +162,7 @@
                             </a>
                             <a href="#" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
-                                    <img src="./assets/img/blog/br-2.jpg" alt="" />
+                                    <img src="assets/img/blog/br-2.jpg" alt="" />
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h4>Bbq Myths Getting You Down</h4>
@@ -171,7 +171,7 @@
                             </a>
                             <a href="#" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
-                                    <img src="./assets/img/blog/br-3.jpg" alt="" />
+                                    <img src="assets/img/blog/br-3.jpg" alt="" />
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h4>Save Money The Crock Pot Way</h4>
@@ -180,7 +180,7 @@
                             </a>
                             <a href="#" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
-                                    <img src="./assets/img/blog/br-4.jpg" alt="" />
+                                    <img src="assets/img/blog/br-4.jpg" alt="" />
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h4>Grilling Tips For The Dog Days Of Summer</h4>
@@ -189,7 +189,7 @@
                             </a>
                             <a href="#" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
-                                    <img src="./assets/img/blog/br-5.jpg" alt="" />
+                                    <img src="assets/img/blog/br-5.jpg" alt="" />
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h4>Barbeque Techniques Two Methods To Consider</h4>

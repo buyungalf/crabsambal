@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__links">
-                    <a href="./">Home</a>
+                    <a href="<?= $base_url ?>">Home</a>
                     <span>About</span>
                 </div>
             </div>
@@ -34,7 +34,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="about__video set-bg" data-setbg="./assets/img/about-video.jpg">
+                <div class="about__video set-bg" data-setbg="assets/img/about-video.jpg">
                     <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="./assets/img/testimonial/ta-1.jpg" alt="" />
+                                <img src="assets/img/testimonial/ta-1.jpg" alt="" />
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -125,7 +125,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="./assets/img/testimonial/ta-2.jpg" alt="" />
+                                <img src="assets/img/testimonial/ta-2.jpg" alt="" />
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -150,7 +150,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="./assets/img/testimonial/ta-1.jpg" alt="" />
+                                <img src="assets/img/testimonial/ta-1.jpg" alt="" />
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Ophelia Nunez</h5>
@@ -175,7 +175,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="./assets/img/testimonial/ta-2.jpg" alt="" />
+                                <img src="assets/img/testimonial/ta-2.jpg" alt="" />
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -200,7 +200,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="./assets/img/testimonial/ta-1.jpg" alt="" />
+                                <img src="assets/img/testimonial/ta-1.jpg" alt="" />
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Ophelia Nunez</h5>
@@ -225,7 +225,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="./assets/img/testimonial/ta-2.jpg" alt="" />
+                                <img src="assets/img/testimonial/ta-2.jpg" alt="" />
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -270,7 +270,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="./assets/img/team/team-1.jpg">
+                <div class="team__item set-bg" data-setbg="assets/img/team/team-1.jpg">
                     <div class="team__item__text">
                         <h6>Randy Butler</h6>
                         <span>Decorater</span>
@@ -284,7 +284,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="./assets/img/team/team-2.jpg">
+                <div class="team__item set-bg" data-setbg="assets/img/team/team-2.jpg">
                     <div class="team__item__text">
                         <h6>Randy Butler</h6>
                         <span>Decorater</span>
@@ -298,7 +298,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="./assets/img/team/team-3.jpg">
+                <div class="team__item set-bg" data-setbg="assets/img/team/team-3.jpg">
                     <div class="team__item__text">
                         <h6>Randy Butler</h6>
                         <span>Decorater</span>
@@ -312,7 +312,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="./assets/img/team/team-4.jpg">
+                <div class="team__item set-bg" data-setbg="assets/img/team/team-4.jpg">
                     <div class="team__item__text">
                         <h6>Randy Butler</h6>
                         <span>Decorater</span>

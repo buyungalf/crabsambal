@@ -10,7 +10,7 @@
 <?php include './templates/header.php' ?>
 
 <!-- Blog Hero Begin -->
-<div class="blog-hero set-bg" data-setbg="./assets/img/blog/details/blog-hero.jpg">
+<div class="blog-hero set-bg" data-setbg="assets/img/blog/details/blog-hero.jpg">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-7">

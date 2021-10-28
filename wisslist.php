@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__links">
-                    <a href="./">Home</a>
+                    <a href="<?= $base_url ?>">Home</a>
                     <span>Wishlist</span>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-1.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-1.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>Vanilla Salted Caramel</h6>
@@ -67,7 +67,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-2.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-2.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>German Chocolate</h6>
@@ -85,7 +85,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-3.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-3.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>SWEET AUTUMN LEAVES</h6>
@@ -103,7 +103,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-4.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-4.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>Gluten Free Mini Dozen</h6>

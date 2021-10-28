@@ -20,8 +20,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__links">
-                    <a href="./">Home</a>
-                    <a href="./shop.php">Shop</a>
+                    <a href="<?= $base_url ?>">Home</a>
+                    <a href="<?= $base_url ?>shop.php">Shop</a>
                     <span>Sweet autumn leaves</span>
                 </div>
             </div>
@@ -37,23 +37,23 @@
             <div class="col-lg-6">
                 <div class="product__details__img">
                     <div class="product__details__big__img">
-                        <img class="big_img" src="./assets/img/shop/details/product-big-1.jpg" alt="" />
+                        <img class="big_img" src="assets/img/shop/details/product-big-1.jpg" alt="" />
                     </div>
                     <div class="product__details__thumb">
                         <div class="pt__item active">
-                            <img data-imgbigurl="./assets/img/shop/details/product-big-2.jpg" src="./assets/img/shop/details/product-big-2.jpg" alt="" />
+                            <img data-imgbigurl="assets/img/shop/details/product-big-2.jpg" src="assets/img/shop/details/product-big-2.jpg" alt="" />
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="./assets/img/shop/details/product-big-1.jpg" src="./assets/img/shop/details/product-big-1.jpg" alt="" />
+                            <img data-imgbigurl="assets/img/shop/details/product-big-1.jpg" src="assets/img/shop/details/product-big-1.jpg" alt="" />
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="./assets/img/shop/details/product-big-4.jpg" src="./assets/img/shop/details/product-big-4.jpg" alt="" />
+                            <img data-imgbigurl="assets/img/shop/details/product-big-4.jpg" src="assets/img/shop/details/product-big-4.jpg" alt="" />
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="./assets/img/shop/details/product-big-3.jpg" src="./assets/img/shop/details/product-big-3.jpg" alt="" />
+                            <img data-imgbigurl="assets/img/shop/details/product-big-3.jpg" src="assets/img/shop/details/product-big-3.jpg" alt="" />
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="./assets/img/shop/details/product-big-5.jpg" src="./assets/img/shop/details/product-big-5.jpg" alt="" />
+                            <img data-imgbigurl="assets/img/shop/details/product-big-5.jpg" src="assets/img/shop/details/product-big-5.jpg" alt="" />
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
             <div class="related__products__slider owl-carousel">
                 <div class="col-lg-3">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="./assets/img/shop/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-1.jpg">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
@@ -178,7 +178,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="./assets/img/shop/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-2.jpg">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
@@ -194,7 +194,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="./assets/img/shop/product-3.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-3.jpg">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="./assets/img/shop/product-4.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-4.jpg">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
@@ -226,7 +226,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="./assets/img/shop/product-5.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-5.jpg">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
@@ -242,7 +242,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="./assets/img/shop/product-6.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-6.jpg">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
