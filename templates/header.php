@@ -57,12 +57,12 @@
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="<?= $base_url ?>wisslist.php">
+                                    <a href="wisslist">
                                         <img src="assets/img/icon/heart.png" alt="" />
                                     </a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="<?= $base_url ?>cart.php">
+                                    <a href="cart">
                                         <img src="assets/img/icon/cart.png" alt="" />
                                         <span style="font-size: 1rem !important;
 												left: 2rem !important;
@@ -91,17 +91,17 @@
                             <li class="<?= ($page == "" ? "active" : "") ?>">
                                 <a href="<?= $base_url ?>">Beranda</a>
                             </li>
-                            <li class="<?= ($page == "about.php" ? "active" : "") ?>">
-                                <a href="<?= $base_url ?>about.php">Tentang Kami</a>
+                            <li class="<?= ($page == "about" ? "active" : "") ?>">
+                                <a href="about">Tentang Kami</a>
                             </li>
-                            <li class="<?= ($page == "shop.php" ? "active" : "") ?>">
-                                <a href="<?= $base_url ?>shop.php">Produk</a>
+                            <li class="<?= ($page == "shop" ? "active" : "") ?>">
+                                <a href="shop">Produk</a>
                             </li>
-                            <li class="<?= ($page == "how-to-buy.php" ? "active" : "") ?>">
-                                <a href="<?= $base_url ?>how-to-buy.php">Cara Pembelian</a>
+                            <li class="<?= ($page == "how-to-buy" ? "active" : "") ?>">
+                                <a href="how-to-buy">Cara Pembelian</a>
                             </li>
-                            <li class="<?= ($page == "contact.php" ? "active" : "") ?>">
-                                <a href="<?= $base_url ?>contact.php">Hubungi Kami</a>
+                            <li class="<?= ($page == "contact" ? "active" : "") ?>">
+                                <a href="contact">Hubungi Kami</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-print"></i> Katalog</a>

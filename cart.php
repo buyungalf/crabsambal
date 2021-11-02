@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>Home | Crabsambal</title>
+<title>Cart | Crabsambal</title>
 
 <?php include './templates/header.php' ?>
 
@@ -163,7 +163,7 @@
                         <li>Subtotal <span>$ 169.50</span></li>
                         <li>Total <span>$ 169.50</span></li>
                     </ul>
-                    <a href="<?= $base_url ?>checkout.php" class="primary-btn">Proceed to checkout</a>
+                    <a href="checkout.php" class="primary-btn">Proceed to checkout</a>
                 </div>
             </div>
         </div>
