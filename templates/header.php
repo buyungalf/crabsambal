@@ -22,6 +22,55 @@
         <div class="loader"></div>
     </div>
 
+    <?php
+    $sid = session_id();
+
+    // handle add to cart
+    $id_produk = $_POST['id_produk'];
+
+    if (validValue($id_produk)) {
+
+        $tgl_sekarang = date("Ymd");
+        $jam_sekarang = date("H:i:s");
+
+        $query_product_detail = mysqli_query($koneksi, "SELECT stok FROM produk WHERE id_produk='{$id_produk}'");
+        $result = mysqli_fetch_array($query_product_detail);
+        $stok = $result['stok'];
+        $kemarin = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
+
+        if ($stok == 0) {
+            create_flash('maaf produk habis', 'danger');
+        } else {
+            // check if the product is already
+            // in cart table for this session
+            $query_check_product = mysqli_query($koneksi, "SELECT id_produk FROM orders_temp
+			WHERE id_produk='$id_produk' AND id_session='$sid'");
+
+            $result_check_product = mysqli_num_rows($query_check_product);
+
+            // Delete all cart entries older than one day
+            mysqli_query($koneksi, "DELETE FROM orders_temp WHERE tgl_order_temp < '{$kemarin}'");
+
+            if ($result_check_product == 0) {
+                // put the product in cart table
+                mysqli_query($koneksi, "INSERT INTO orders_temp (id_produk, jumlah, id_session, tgl_order_temp, jam_order_temp, stok_temp) VALUES ('$id_produk', 1, '$sid', '$tgl_sekarang', '$jam_sekarang', '$stok')");
+                create_flash('berhasil menambahkan produk ke keranjang');
+            } else {
+                // update product quantity in cart table
+                mysqli_query($koneksi, "UPDATE orders_temp SET jumlah = jumlah + 1 WHERE id_session ='$sid' AND id_produk='$id_produk'");
+                create_flash('berhasil menambahkan produk ke keranjang');
+            }
+        }
+    }
+
+    $cart_total_result = mysqli_query(
+        $koneksi,
+        "SELECT SUM(jumlah) as cartTotal FROM orders_temp WHERE id_session='{$sid}'"
+    );
+
+    $cart = mysqli_fetch_array($cart_total_result);
+    ?>
+
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
@@ -30,9 +79,9 @@
                 <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
             </div>
             <div class="offcanvas__cart__item">
-                <a href="#">
+                <a href="cart">
                     <img src="assets/img/icon/cart.png" alt="">
-                    <span>0</span>
+                    <span> <?= $cart['cartTotal'] !== null ? $cart['cartTotal'] : 0  ?></span>
                 </a>
             </div>
         </div>
@@ -66,7 +115,9 @@
                                         <img src="assets/img/icon/cart.png" alt="" />
                                         <span style="font-size: 1rem !important;
 												left: 2rem !important;
-												top: 0 !important;">15</span>
+												top: 0 !important;">
+                                            <?= $cart['cartTotal'] !== null ? $cart['cartTotal'] : 0  ?>
+                                        </span>
                                     </a>
                                 </div>
                             </div>

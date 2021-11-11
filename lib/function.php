@@ -62,4 +62,13 @@ function format_rupiah($angka){
   	$rupiah=number_format($angka,0,',','.');
  	return $rupiah;
 }
+
+
+function validValue($value): bool
+{
+    // mencegah XSS
+    $value = htmlentities(htmlspecialchars($value), ENT_QUOTES);
+    return isset($value) && !empty($value);
+}
+
 ?>

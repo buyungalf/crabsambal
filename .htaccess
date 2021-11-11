@@ -9,4 +9,5 @@ RewriteRule ^how-to-buy$ how-to-buy.php [L]
 RewriteRule ^wislist$ wislist.php [L]
 RewriteRule ^produk-(.*)$ shop-details.php?slug=$1 [L]
 
+# prevent any direct directory browsing through the browser
 Options All -Indexes

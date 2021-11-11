@@ -8,14 +8,13 @@
 ---------------------------------------------------------  */
 
 "use strict"
-
 ;(function ($) {
     /*------------------
         Preloader
     --------------------*/
     $(window).on("load", function () {
         $(".loader").fadeOut()
-        $("#preloder").delay(200).fadeOut("fast")
+        $("#preloder").delay(10).fadeOut("fast")
     })
 
     /*------------------

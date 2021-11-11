@@ -13,27 +13,16 @@
 
 $query_category = "SELECT kategori.kategori_seo, kategori.nama_kategori FROM kategori";
 
-$category_result =  mysqli_query($koneksi, $query_category);
-
-// handle get request
-
+// handle sort by category and asd / dsc 
 $category = strtolower(trim($_GET['category'] ?? ''));
 $sort = strtolower(trim($_GET['sort'] ?? ''));
-$search = strtolower(trim($_GET['search'] ?? ''));
 
 // check valid sort
 $sort = validValue($sort) && !in_array($sort, ['asc', 'desc']) ?  'asc' : $sort;
 
-function validValue($value): bool
-{
-    // mencegah XSS
-    $value = htmlentities(htmlspecialchars($value), ENT_QUOTES);
-    return isset($value) && !empty($value);
-}
-
 if (validValue($category) && validValue($sort)) {
     // jika ada kategori dan sort maka where category sort asc|desc
-    $query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+    $query_product = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
         FROM produk
         INNER JOIN kategori ON 
         produk.id_kategori=kategori.id_kategori 
@@ -41,39 +30,48 @@ if (validValue($category) && validValue($sort)) {
         ORDER BY produk.nama_produk {$sort}";
 } elseif (validValue($category)) {
     // jika ada kategori ganti query product where category 
-    $query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+    $query_product = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
         FROM produk
         INNER JOIN kategori ON 
         produk.id_kategori=kategori.id_kategori
         WHERE kategori.kategori_seo='{$category}'";
 } elseif (validValue($sort)) {
     // jika ada sort ganti query product ke sort asc | desc
-    $query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+    $query_product = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
         FROM produk
         INNER JOIN kategori ON produk.id_kategori=kategori.id_kategori
         ORDER BY produk.nama_produk {$sort}";
 } else {
 
-    $query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+    $query_product = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
         FROM produk
         INNER JOIN kategori ON 
         produk.id_kategori=kategori.id_kategori";
 }
 
+// handle sort search 
+$search = strtolower(trim($_GET['search'] ?? ''));
+
 if (validValue($search)) {
-    $query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+    $query_product = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
         FROM produk
         INNER JOIN kategori ON 
         produk.id_kategori=kategori.id_kategori WHERE produk.nama_produk LIKE '%{$search}%'";
 }
 
+
+// query result
+$category_result =  mysqli_query($koneksi, $query_category);
 $product_result = mysqli_query($koneksi, $query_product);
 
 ?>
 
+
+
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
     <div class="container">
+        <?php show_flash() ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__text">
@@ -98,35 +96,40 @@ $product_result = mysqli_query($koneksi, $query_product);
             <div class="row">
                 <div class="col-lg-5 col-md-5">
                     <div class="shop__option__search">
-                        <form action="" method="GET">
+                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
                             <input type="text" name="search" placeholder="Search" value="<?= validValue($search) ? $search : '' ?>" />
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
-                    <form action="" method="GET">
-                        <div class="shop__option__right" style="display: flex;align-items: stretch; justify-content: end;">
-                            <select name="category">
-                                <option value="">Categories</option>
-                                <?php
-                                $i = 1;
-                                while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
-                                    <option value="<?= $categoryItem['kategori_seo'] ?>" <?= isset($category) && $category === $categoryItem['kategori_seo'] ? 'selected' : '' ?>>
-                                        <?= $categoryItem['nama_kategori'] ?>
-                                    </option>
-                                <?php $i++;
-                                endwhile ?>
-                            </select>
-                            <select name="sort">
-                                <option value="">Default sorting</option>
-                                <option value="asc" <?= isset($sort) && $sort === 'asc' ? 'selected' : '' ?>>A to Z</option>
-                                <option value="desc" <?= isset($sort) && $sort === 'desc' ? 'selected' : '' ?>>Z to A</option>
-                            </select>
-                            <button class="site-btn primary-btn" style="padding: 11px 18px ; margin: 0 4px" type="submit">Filter</button>
-                            <span class="site-btn primary-btn" id="reset" style="padding: 11px 18px; margin: 0 4px; cursor: pointer;">Reset</span>
-                        </div>
-                    </form>
+                    <div class="row">
+
+                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
+                            <div class="shop__option__right" style="display: flex;align-items: stretch; justify-content: end;">
+
+                                <select name="category">
+                                    <option value="">Categories</option>
+                                    <?php
+                                    $i = 1;
+                                    while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
+                                        <option value="<?= $categoryItem['kategori_seo'] ?>" <?= isset($category) && $category === $categoryItem['kategori_seo'] ? 'selected' : '' ?>>
+                                            <?= $categoryItem['nama_kategori'] ?>
+                                        </option>
+                                    <?php $i++;
+                                    endwhile ?>
+                                </select>
+                                <select name="sort">
+                                    <option value="">Default sorting</option>
+                                    <option value="asc" <?= isset($sort) && $sort === 'asc' ? 'selected' : '' ?>>A to Z</option>
+                                    <option value="desc" <?= isset($sort) && $sort === 'desc' ? 'selected' : '' ?>>Z to A</option>
+                                </select>
+                                <button class="site-btn primary-btn" style="padding: 11px 18px ; margin: 0 4px" type="submit">Filter</button>
+                                <span class="site-btn primary-btn" id="reset" style="padding: 11px 18px; margin: 0 4px; cursor: pointer;">Reset</span>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -154,9 +157,13 @@ $product_result = mysqli_query($koneksi, $query_product);
                                     </a>
                                 </h6>
                                 <div class="product__item__price" data-price="<?= $item['harga'] ?>"><?= "Rp " . format_rupiah($item['harga']) ?></div>
-                                <div class="cart_add">
-                                    <a href="#">Add to cart</a>
-                                </div>
+                                <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                                    <div class="cart_add">
+                                        <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
+                                        <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;color: #111111;font-size: 16px;font-weight: 600;display: inline-block;border-bottom: 2px solid #8ECA36;padding-bottom: 4px;
+                                        " class="btn_add" type="submit">Add to cart</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -202,4 +209,12 @@ $product_result = mysqli_query($koneksi, $query_product);
             location.replace('<?= $base_url ?>shop')
         })
     }
+
+    /*------------------
+        remove session when click flash alert
+    --------------------*/
+    $(".alert").on("click", function() {
+        sessionStorage.removeItem('flash')
+        $(this).alert('close')
+    })
 </script>

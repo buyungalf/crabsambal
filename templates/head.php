@@ -1,6 +1,14 @@
-<?php include "./lib/config.php"; ?>
-<?php include "./lib/koneksi.php"; ?>
-<?php include "./lib/function.php"; ?>
+<?php
+
+session_start();
+error_reporting(0);
+
+include "./lib/config.php";
+include "./lib/koneksi.php";
+include "./lib/function.php";
+
+require_once './lib/flash.php';
+?>
 
 <!DOCTYPE html>
 <html lang="id">
