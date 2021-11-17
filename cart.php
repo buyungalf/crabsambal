@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>Home | Crabsambal</title>
+<title>Cart | Crabsambal</title>
 
 <?php include './templates/header.php' ?>
 
@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__links">
-                    <a href="./">Home</a>
+                    <a href="<?= $base_url ?>">Home</a>
                     <span>Shopping cart</span>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-1.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-1.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>T-shirt Contrast Pocket</h6>
@@ -70,7 +70,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-2.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-2.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>Diagonal Textured Cap</h6>
@@ -92,7 +92,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-3.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-3.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>Basic Flowing Scarf</h6>
@@ -114,7 +114,7 @@
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="./assets/img/shop/cart/cart-4.jpg" alt="" />
+                                        <img src="assets/img/shop/cart/cart-4.jpg" alt="" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>Basic Flowing Scarf</h6>
@@ -163,7 +163,7 @@
                         <li>Subtotal <span>$ 169.50</span></li>
                         <li>Total <span>$ 169.50</span></li>
                     </ul>
-                    <a href="./checkout.php" class="primary-btn">Proceed to checkout</a>
+                    <a href="checkout.php" class="primary-btn">Proceed to checkout</a>
                 </div>
             </div>
         </div>

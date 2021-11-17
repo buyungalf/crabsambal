@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>Home | Crabsambal</title>
+<title>Cara Pembelian | Crabsambal</title>
 
 <?php include './templates/header.php' ?>
 
 <!-- Blog Hero Begin -->
-<div class="blog-hero set-bg" data-setbg="./assets/img/blog/details/blog-hero.jpg">
+<div class="blog-hero set-bg" data-setbg="assets/img/blog/details/blog-hero.jpg">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-7">

@@ -295,5 +295,4 @@
 </section>
 <!-- Instagram Section End -->
 
-
 <?php include './templates/footer.php' ?>

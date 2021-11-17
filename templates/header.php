@@ -3,16 +3,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="./assets/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/flaticon.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/barfiller.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/flaticon.css" type="text/css">
+<link rel="stylesheet" href="assets/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="assets/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="offcanvas__logo">
-            <a href="./"><img src="assets/img/logo.png" alt=""></a>
+            <a href="<?= $base_url ?>"><img src="assets/img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
     </div>
@@ -51,18 +51,18 @@
                     <div class="col-lg-12">
                         <div class="header__top__inner">
                             <div class="header__logo">
-                                <a href="./">
+                                <a href="<?= $base_url ?>">
                                     <img src="assets/img/logo.png" alt="" />
                                 </a>
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="./wisslist.php">
+                                    <a href="wisslist">
                                         <img src="assets/img/icon/heart.png" alt="" />
                                     </a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="./cart.php">
+                                    <a href="cart">
                                         <img src="assets/img/icon/cart.png" alt="" />
                                         <span style="font-size: 1rem !important;
 												left: 2rem !important;
@@ -89,19 +89,19 @@
                         ?>
                         <ul>
                             <li class="<?= ($page == "" ? "active" : "") ?>">
-                                <a href="./">Beranda</a>
+                                <a href="<?= $base_url ?>">Beranda</a>
                             </li>
-                            <li class="<?= ($page == "about.php" ? "active" : "") ?>">
-                                <a href="./about.php">Tentang Kami</a>
+                            <li class="<?= ($page == "about" ? "active" : "") ?>">
+                                <a href="about">Tentang Kami</a>
                             </li>
-                            <li class="<?= ($page == "shop.php" ? "active" : "") ?>">
-                                <a href="./shop.php">Produk</a>
+                            <li class="<?= ($page == "shop" ? "active" : "") ?>">
+                                <a href="shop">Produk</a>
                             </li>
-                            <li class="<?= ($page == "how-to-buy.php" ? "active" : "") ?>">
-                                <a href="./how-to-buy.php">Cara Pembelian</a>
+                            <li class="<?= ($page == "how-to-buy" ? "active" : "") ?>">
+                                <a href="how-to-buy">Cara Pembelian</a>
                             </li>
-                            <li class="<?= ($page == "contact.php" ? "active" : "") ?>">
-                                <a href="./contact.php">Hubungi Kami</a>
+                            <li class="<?= ($page == "contact" ? "active" : "") ?>">
+                                <a href="contact">Hubungi Kami</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-print"></i> Katalog</a>

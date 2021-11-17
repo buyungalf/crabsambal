@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<title>Home | Crabsambal</title>
+<title>Checkout | Crabsambal</title>
 
 <?php include './templates/header.php' ?>
 
@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__links">
-                    <a href="./">Home</a>
+                    <a href="<?= $base_url ?>">Home</a>
                     <span>Checkout</span>
                 </div>
             </div>
