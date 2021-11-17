@@ -27,9 +27,7 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th style="width: 20px">#</th>
             <th>Nama Produk</th>
-            <th>Seo</th>
             <th>Deskripsi</th>
             <th>Harga</th>
             <th>Stok</th>
@@ -50,9 +48,7 @@
             while($item=mysqli_fetch_array($query)){                              
           ?>
           <tr>
-            <td><?= $i ?>.</td>
             <td><?= $item['nama_produk'] ?></td>
-            <td><?= $item['produk_seo'] ?></td>
             <td><?= substr($item['deskripsi'],0,150) ?></td>
             <td>Rp<?= format_rupiah($item['harga']) ?></td>
             <td><?= $item['stok'] ?></td>

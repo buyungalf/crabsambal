@@ -63,6 +63,8 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
             }
 
         } else if(isset($_POST['edit'])){
+            
+            $old_gambar = $_POST['old_gambar'];
             $nama_file = $_FILES['Gambar']['name'];
             $ukuran_file = $_FILES['Gambar']['size'];
             $tipe_file = $_FILES['Gambar']['type'];
@@ -80,41 +82,49 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
             $diskon = $_POST['diskon'];
             $id_kategori = $_POST['id_kategori'];
             $path = "../../asset/images/foto_produk/" . $nama_file;
-
-            
-            if($tipe_file == "image/jpeg" || $tipe_file == "image/png")
-            {
-                if($ukuran_file <= 10000000)
+            if (empty($_FILES['Gambar']['name'])) {
+                $query = mysqli_query($koneksi,"UPDATE produk SET id_kategori='$id_kategori', nama_produk='$nama_produk', produk_seo='$produk_seo', deskripsi='$deskripsi', harga='$harga', stok='$stok', berat='$berat', tgl_masuk='$tgl_masuk', dibeli='$dibeli', diskon='$diskon' WHERE id_produk='$id_produk'");
+                if($query) {
+                    echo"<script> alert('Data Produk Berhasil Diubah'); window.location = '$admin_url'+'main.php?module=produk'; </script>"; 
+                } else {
+                    echo "<script> alert('Data Produk Gagal Diubah'); window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk';</script>";
+                }
+            } else {
+                if($tipe_file == "image/jpeg" || $tipe_file == "image/png")
                 {
-                    if(move_uploaded_file($tmp_file, $path))
+                    if($ukuran_file <= 10000000)
                     {
-                        if ($nama_produk=="") {
-                            echo "<script> alert('Nama produk tidak boleh kosong!'); window.location = '$admin_url'+'main.php?module=form_produk';</script>";
-                        } else {
-                            $query = mysqli_query($koneksi,"UPDATE produk SET id_kategori='$id_kategori', nama_produk='$nama_produk', produk_seo='$produk_seo', deskripsi='$deskripsi', harga='$harga', stok='$stok', berat='$berat', tgl_masuk='$tgl_masuk', gambar='$nama_file', dibeli='$dibeli', diskon='$diskon' WHERE id_produk='$id_produk'");
-                            if($query)
-                            {
-                                echo"<script> alert('Data Produk Berhasil Diubah'); window.location = '$admin_url'+'main.php?module=produk'; </script>"; 
+                        if(move_uploaded_file($tmp_file, $path))
+                        {
+                            if ($nama_produk=="") {
+                                echo "<script> alert('Nama produk tidak boleh kosong!'); window.location = '$admin_url'+'main.php?module=form_produk';</script>";
                             } else {
-                                echo "<script> alert('Data Produk Gagal Diubah'); window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk';</script>";
-                            }
-                        }           
-                        
+                                $query = mysqli_query($koneksi,"UPDATE produk SET id_kategori='$id_kategori', nama_produk='$nama_produk', produk_seo='$produk_seo', deskripsi='$deskripsi', harga='$harga', stok='$stok', berat='$berat', tgl_masuk='$tgl_masuk', gambar='$nama_file', dibeli='$dibeli', diskon='$diskon' WHERE id_produk='$id_produk'");
+                                if($query)
+                                {
+                                    unlink("../../asset/images/foto_produk/" . $old_gambar);
+                                    echo"<script> alert('Data Produk Berhasil Diubah'); window.location = '$admin_url'+'main.php?module=produk'; </script>"; 
+                                } else {
+                                    echo "<script> alert('Data Produk Gagal Diubah'); window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk';</script>";
+                                }
+                            }           
+                            
+                        } 
+                        else 
+                        {
+                            echo "<script> alert('Data Gambar Produk Gagal Dimasukkan');  window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk'; </script>";
+                        }
                     } 
                     else 
                     {
-                        echo "<script> alert('Data Gambar Produk Gagal Dimasukkan');  window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk'; </script>";
+                        echo "<script> alert('Data Gambar Produk Gagal Dimasukkan Karena Ukuran Melebihi 1 MB'); window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk'; </script>";
                     }
                 } 
                 else 
                 {
-                    echo "<script> alert('Data Gambar Produk Gagal Dimasukkan Karena Ukuran Melebihi 1 MB'); window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk'; </script>";
+                    echo "<script> alert('Data Gambar Produk Gagal Dimasukkan Karena Tidak Berektensi JPG/JPEG/PNG'); window.location = '$admin_url'+'main.php?module=edit_produk&id_produk=$id_produk';</script> ";
                 }
-            } 
-            else 
-            {
-                echo "<script> alert('Data Gambar Produk Gagal Dimasukkan Karena Tidak Berektensi JPG/JPEG/PNG');</script>";
-            }
+            }            
         } else if($_GET['aksi'] == 'hapus'){
             $id_produk=$_GET['id_produk'];
             $nama_file=$_GET['gambar'];

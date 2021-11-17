@@ -47,8 +47,9 @@
             <td><?= $item['status_order'] ?></td>
             <td>
               <div class="input-group-btn">
-                <a href="<?= $admin_url; ?>main.php?module=edit_orders&id_orders=<?= $item['id_orders']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="<?= $admin_url; ?>module/order_produk/aksi.php?id_orders=<?= $item['id_orders']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                <a href="<?= $admin_url; ?>module/order/aksi.php?id_orders=<?= $item['id_orders']; ?>&aksi=lunas" class="btn btn-success"><i class="fas fa-check-circle"></i></a>
+                <a href="<?= $admin_url; ?>module/order/aksi.php?id_orders=<?= $item['id_orders']; ?>&aksi=batal" class="btn btn-danger"><i class="fas fa-times-circle"></i></a>
+                <a href="<?= $admin_url; ?>main.php?module=detail_order&id_orders=<?= $item['id_orders']; ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
               </div>
             </td>
           </tr>
@@ -58,13 +59,6 @@
     </div>
     <!-- /.card-body -->
   </div>
-  <ul class="nav navbar-right panel_toolbox">
-    <div class="input-group-btn float-right">
-    <a href="main.php?module=tambah_order">
-      <button href="index.php" type="button" class="btn btn-primary">Tambah Daftar</button>
-    </a>
-  </div>                      
-  </ul>
 <!-- /.card -->
   </div>
   </div><!-- /.container-fluid -->

@@ -51,7 +51,8 @@
             <td><?= tgl_indo($item['tanggal']) ?></td>
             <td>
               <div class="input-group-btn">
-                <a href="<?= $admin_url; ?>module/hubungi_produk/aksi.php?id_hubungi=<?= $item['id_hubungi']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                <a href="<?= $admin_url; ?>main.php?module=balas_pesan&id_hubungi=<?= $item['id_hubungi']; ?>" class="btn btn-primary"><i class="fas fa-reply"></i></a>
+                <a href="<?= $admin_url; ?>module/hubungi_kami/aksi.php?id_hubungi=<?= $item['id_hubungi']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-trash"></i></a>  
               </div>
             </td>
           </tr>

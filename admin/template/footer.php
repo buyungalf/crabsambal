@@ -82,6 +82,10 @@
     $('#reservationdate').datetimepicker({
         format: 'YYYY-MM-DD'
     });
+    //Date picker2
+    $('#reservationdate2').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
   });
 </script>
 </body>
