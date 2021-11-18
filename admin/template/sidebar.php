@@ -38,7 +38,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-            <a href="main.php?pages=home" class = 'nav-link <?php if ($page == 'home') echo " active"; ?> '>
+            <a href="main.php?module=home" class = 'nav-link <?php if ($page == 'home') echo " active"; ?> '>
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home 

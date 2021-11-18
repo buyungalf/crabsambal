@@ -40,19 +40,19 @@
           <?php
             $query = mysqli_query($koneksi, "SELECT * FROM modul");
             $i=1;
-            while($kt=mysqli_fetch_array($query)){                              
+            while($item=mysqli_fetch_array($query)){                              
           ?>
           <tr>
             <td><?= $i ?>.</td>
-            <td><?= $kt['nama_modul'] ?></td>
-            <td><?= $kt['slug'] ?></td>
-            <td><?= $kt['link'] ?></td>
-            <td><?= $kt['status'] ?></td>
-            <td><?= $kt['aktif'] ?></td>
+            <td><?= $item['nama_modul'] ?></td>
+            <td><?= $item['slug'] ?></td>
+            <td><?= $item['link'] ?></td>
+            <td><?= $item['status'] ?></td>
+            <td><?= $item['aktif'] ?></td>
             <td>
               <div class="input-group-btn">
-                <a href="<?= $admin_url; ?>main.php?module=edit_modul&id_modul=<?= $kt['id_modul']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="<?= $admin_url; ?>module/modul_produk/aksi.php?id_modul=<?= $kt['id_modul']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-power-off"></i></a>
+                <a href="<?= $admin_url; ?>main.php?module=edit_modul&id_modul=<?= $item['id_modul']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="<?= $admin_url; ?>module/manajemen_modul/aksi.php?id_modul=<?= $item['id_modul']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-trash"></i></a>
               </div>
             </td>
           </tr>

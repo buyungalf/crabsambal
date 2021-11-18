@@ -33,6 +33,7 @@
                 <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori">
               </div>
             </div>
+          </div>
           <!-- /.card-body -->
           <div class="card-footer">
           	<button class="btn btn-default float-right ml-2">Batal</button>

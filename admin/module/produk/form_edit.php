@@ -104,7 +104,14 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Gambar</label>
               <div class="col-sm-10">
-                <input type="file" name="Gambar" placeholder="Gambar">
+                <img src="asset/images/foto_produk/<?= $gambar ?>" style="width: 200px">
+                <input type="hidden" value="<?= $gambar ?>" name="old_gambar">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Ubah Gambar</label>
+              <div class="col-sm-10">
+                <input type="file" value="<?= $gambar ?>" name="Gambar" placeholder="Gambar">
               </div>
             </div>
             <div class="form-group row">

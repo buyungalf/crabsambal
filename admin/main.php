@@ -23,10 +23,16 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
             include "module/produk/form_edit.php";   
                                 
         } else if ($_GET['module'] == 'order') {
-            include "module/order/order.php";    
+            include "module/order/order.php";   
+        } else if ($_GET['module'] == 'detail_order') {
+            include "module/order/detail_order.php";  
                                 
         } else if ($_GET['module'] == 'modul') {
-            include "module/manajemen_modul/modul.php";    
+            include "module/manajemen_modul/modul.php";   
+        } else if ($_GET['module'] == 'tambah_modul') {
+            include "module/manajemen_modul/form_tambah.php";
+        } else if ($_GET['module'] == 'edit_modul') {
+            include "module/manajemen_modul/form_edit.php";  
         //kategori                  
         } else if ($_GET['module'] == 'kategori') {
             include "module/kategori_produk/kategori_produk.php";
@@ -39,16 +45,26 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
             include "module/profil_toko_online/profil.php";    
                                 
         } else if ($_GET['module'] == 'hubungi') {
-            include "module/hubungi_kami/hubungi.php";    
+            include "module/hubungi_kami/hubungi.php"; 
+            } else if ($_GET['module'] == 'balas_pesan') {
+            include "module/hubungi_kami/balas.php";     
                                 
         } else if ($_GET['module'] == 'carabeli') {
             include "module/cara_pembelian/carabeli.php";    
                                 
         } else if ($_GET['module'] == 'banner') {
             include "module/banner/banner.php";    
+        } else if ($_GET['module'] == 'tambah_banner') {
+            include "module/banner/form_tambah.php";
+        } else if ($_GET['module'] == 'edit_banner') {
+            include "module/banner/form_edit.php";  
                                 
         } else if ($_GET['module'] == 'ongkoskirim') {
-            include "module/ongkos_kirim/ongkoskirim.php";    
+            include "module/ongkos_kirim/ongkoskirim.php"; 
+        } else if ($_GET['module'] == 'tambah_ongkoskirim') {
+            include "module/ongkos_kirim/form_tambah.php";
+        } else if ($_GET['module'] == 'edit_ongkoskirim') {
+            include "module/ongkos_kirim/form_edit.php";     
                                 
         } else if ($_GET['module'] == 'password') {
             include "module/ganti_password/password.php";    
@@ -57,10 +73,14 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
             include "module/modul_ym/ym.php";    
                                 
         } else if ($_GET['module'] == 'laporan') {
-            include "module/laporan/laporan.php";    
+            include "module/laporan/laporan1.php";    
                                 
         } else if ($_GET['module'] == 'download') {
-            include "module/download_katalog/download.php";    
+            include "module/download_katalog/download.php";
+        } else if ($_GET['module'] == 'tambah_download') {
+            include "module/download_katalog/form_tambah.php";
+        } else if ($_GET['module'] == 'edit_download') {
+            include "module/download_katalog/form_edit.php";
                                 
         }  else {
             include "module/home/home.php";
