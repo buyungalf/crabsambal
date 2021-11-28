@@ -1,4 +1,4 @@
-<?php 
+<?php
 function create_flash($message, $type = 'success')
 {
     // create the flash message

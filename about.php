@@ -7,7 +7,14 @@
 
 <title>Tentang Kami| Crabsambal</title>
 
-<?php include './templates/header.php' ?>
+<?php include './templates/header.php';
+
+$profile_result = mysqli_query(
+    $koneksi,
+    "SELECT * FROM modul WHERE nama_modul = 'Profil Toko Online'"
+);
+
+?>
 
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -30,16 +37,16 @@
 <!-- Breadcrumb End -->
 
 <!-- About Section Begin -->
-<section class="about spad">
+<section class="about spad" style="padding-top: 40px">
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12">
                 <div class="about__video set-bg" data-setbg="assets/img/about-video.jpg">
                     <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> -->
+        <!-- <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="about__text">
                     <div class="section-title">
@@ -78,13 +85,23 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <div class="row">
+            <div class="col">
+                <div class="about__text">
+                    <!-- <div class="section-title">
+                        <span>Profile Crabsambal</span>
+                        <!-- <h2>Cakes and bakes from the house of Queens!</h2> -->
+                    <?= mysqli_fetch_array($profile_result)['static_content'] ?>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 <!-- About Section End -->
 
 <!-- Testimonial Section Begin -->
-<section class="testimonial spad">
+<!-- <section class="testimonial spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -249,11 +266,11 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Testimonial Section End -->
 
 <!-- Team Section Begin -->
-<section class="team spad">
+<!-- <section class="team spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-md-7 col-sm-7">
@@ -327,7 +344,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Team Section End -->
 
 <?php include './templates/footer.php' ?>

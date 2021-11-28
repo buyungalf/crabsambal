@@ -1,6 +1,6 @@
 <?php include './templates/head.php';
 
-$query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.deskripsi, produk.stok, produk.berat, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+$query_product = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.deskripsi, produk.stok, produk.berat, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
             FROM produk
             INNER JOIN kategori ON 
             produk.id_kategori=kategori.id_kategori
@@ -8,7 +8,7 @@ $query_product = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, pr
 
 
 
-$query_random = "SELECT produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+$query_random = "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
     FROM produk 
     INNER JOIN kategori ON 
     produk.id_kategori=kategori.id_kategori
@@ -90,13 +90,13 @@ $product = mysqli_fetch_array($product_result);
                         <li>Berat: <span><?= $product['berat'] ?></span></li>
                     </ul>
                     <div class="product__details__option">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="2" />
+                        <form action="shop" method="GET">
+                            <div class="cart_add">
+                                <input type="hidden" name="act" value="add">
+                                <input type="hidden" name="id_product" value="<?= $product['id_produk'] ?>">
+                                <button class="btn primary-btn" type="submit">Add to cart</button>
                             </div>
-                        </div>
-                        <a href="#" class="primary-btn">Add to cart</a>
-                        <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -165,26 +165,7 @@ $product = mysqli_fetch_array($product_result);
                 <?php $i = 1;
                 while ($item = mysqli_fetch_array($product_random_result)) : ?>
                     <div class="col-lg-3">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="assets/img/product/<?= $item['gambar'] ?>">
-                                <div class="product__label">
-                                    <a href="shop?category=<?= $item['kategori_seo'] ?>">
-                                        <span><?= $item['nama_kategori'] ?></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <a href="produk-<?= $item['produk_seo'] ?>">
-                                        <?= $item['nama_produk'] ?>
-                                    </a>
-                                </h6>
-                                <div class="product__item__price" data-price="<?= $item['harga'] ?>"><?= "Rp " . format_rupiah($item['harga']) ?></div>
-                                <div class="cart_add">
-                                    <a href="#">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php require './templates/productItem.php'; ?>
                     </div>
                 <?php $i++;
                 endwhile; ?>

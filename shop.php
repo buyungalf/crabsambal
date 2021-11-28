@@ -96,7 +96,7 @@ $product_result = mysqli_query($koneksi, $query_product);
             <div class="row">
                 <div class="col-lg-5 col-md-5">
                     <div class="shop__option__search">
-                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
+                        <form action="shop" method="GET">
                             <input type="text" name="search" placeholder="Search" value="<?= validValue($search) ? $search : '' ?>" />
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -105,19 +105,16 @@ $product_result = mysqli_query($koneksi, $query_product);
                 <div class="col-lg-7 col-md-7">
                     <div class="row">
 
-                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
+                        <form action="shop" method="GET">
                             <div class="shop__option__right" style="display: flex;align-items: stretch; justify-content: end;">
 
                                 <select name="category">
                                     <option value="">Categories</option>
-                                    <?php
-                                    $i = 1;
-                                    while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
+                                    <?php while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
                                         <option value="<?= $categoryItem['kategori_seo'] ?>" <?= isset($category) && $category === $categoryItem['kategori_seo'] ? 'selected' : '' ?>>
                                             <?= $categoryItem['nama_kategori'] ?>
                                         </option>
-                                    <?php $i++;
-                                    endwhile ?>
+                                    <?php endwhile ?>
                                 </select>
                                 <select name="sort">
                                     <option value="">Default sorting</option>
@@ -129,7 +126,6 @@ $product_result = mysqli_query($koneksi, $query_product);
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -139,33 +135,9 @@ $product_result = mysqli_query($koneksi, $query_product);
             $i = 1;
             if ($product_result && $product_result->num_rows) {
                 while ($item = mysqli_fetch_array($product_result)) :
-
             ?>
                     <div class="col-lg-3 col-md-6 col-sm-6" id="item">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" onclick="location.href='<?= $base_url ?>produk-<?= $item['produk_seo'] ?>'" style="background-size: auto; cursor: pointer;" data-setbg="assets/img/product/<?= $item['gambar'] ?>">
-                                <div class="product__label">
-                                    <a href="shop?category=<?= $item['kategori_seo'] ?>">
-                                        <span><?= $item['nama_kategori'] ?></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <a href="produk-<?= $item['produk_seo'] ?>">
-                                        <?= $item['nama_produk'] ?>
-                                    </a>
-                                </h6>
-                                <div class="product__item__price" data-price="<?= $item['harga'] ?>"><?= "Rp " . format_rupiah($item['harga']) ?></div>
-                                <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                    <div class="cart_add">
-                                        <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
-                                        <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;color: #111111;font-size: 16px;font-weight: 600;display: inline-block;border-bottom: 2px solid #8ECA36;padding-bottom: 4px;
-                                        " class="btn_add" type="submit">Add to cart</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        <?php require './templates/productItem.php'; ?>
                     </div>
                 <?php $i++;
                 endwhile;

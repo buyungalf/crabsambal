@@ -82,8 +82,10 @@ function format_rupiah($angka)
 function validValue($value): bool
 {
   // mencegah XSS
-  $value = htmlentities(htmlspecialchars($value), ENT_QUOTES);
-  return isset($value) && !empty($value);
+
+  $value = stripslashes(strip_tags(htmlentities(htmlspecialchars($value), ENT_QUOTES)));
+
+  return isset($value) && $value !== "" && !empty($value);
 }
 
 function UploadImage($fupload_name)
