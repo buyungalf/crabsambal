@@ -6,7 +6,10 @@ RewriteRule ^cart$ cart.php [L]
 RewriteRule ^checkout$ checkout.php [L]
 RewriteRule ^contact$ contact.php [L]
 RewriteRule ^how-to-buy$ how-to-buy.php [L]
-RewriteRule ^wislist$ wislist.php [L]
+RewriteRule ^wisslist$ wisslist.php [L]
+RewriteRule ^katalog$ catalog.php [L]
+RewriteRule ^transaksi$ transaction.php [L]
 RewriteRule ^produk-(.*)$ shop-details.php?slug=$1 [L]
 
+# prevent any direct directory browsing through the browser
 Options All -Indexes

@@ -7,35 +7,49 @@
 
 <title>Home | Crabsambal</title>
 
-<?php include './templates/header.php' ?>
+<?php include './templates/header.php';
+
+
+$product_result = mysqli_query(
+    $koneksi,
+    "SELECT produk.id_produk, produk.nama_produk, produk.produk_seo, produk.harga, produk.gambar, kategori.nama_kategori, kategori.kategori_seo
+        FROM produk
+        INNER JOIN kategori ON 
+        produk.id_kategori=kategori.id_kategori"
+);
+
+$category_result =  mysqli_query(
+    $koneksi,
+    "SELECT kategori.kategori_seo, kategori.nama_kategori FROM kategori"
+);
+
+$banner_result = mysqli_query(
+    $koneksi,
+    "SELECT banner.judul, banner.gambar FROM banner"
+);
+
+$profile_result = mysqli_query(
+    $koneksi,
+    "SELECT * FROM modul WHERE nama_modul = 'Profil Toko Online'"
+);
+?>
 
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
-        <div class="hero__item set-bg" data-setbg="assets/img/hero/hero-1.jpg">
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="hero__text">
-                            <h2>Making your life sweeter one bite at a time!</h2>
-                            <a href="#" class="primary-btn">Our cakes</a>
+        <?php while ($banner = mysqli_fetch_array($banner_result)) : ?>
+            <div class="hero__item set-bg" data-setbg="assets/img/banner/<?= $banner['gambar'] ?>">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="hero__text">
+                                <h2><?= $banner['judul'] ?></h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="hero__item set-bg" data-setbg="assets/img/hero/hero-1.jpg">
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="hero__text">
-                            <h2>Making your life sweeter one bite at a time!</h2>
-                            <a href="#" class="primary-btn">Our cakes</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endwhile; ?>
     </div>
 </section>
 <!-- Hero Section End -->
@@ -47,59 +61,30 @@
             <div class="col">
                 <div class="about__text">
                     <div class="section-title">
-                        <span>About Cake shop</span>
-                        <h2>Cakes and bakes from the house of Queens!</h2>
+                        <span>Profile Crabsambal</span>
+                        <!-- <h2>Cakes and bakes from the house of Queens!</h2> -->
                     </div>
-                    <p>The "Cake Shop" is a Jordanian Brand that started as a small family business. The owners are
-                        Dr. Iyad Sultan and Dr. Sereen Sharabati, supported by a staff of 80 employees.</p>
+                    <?= mysqli_fetch_array($profile_result)['static_content'] ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- About Section End -->
 
 <!-- Categories Section Begin -->
 <div class="categories">
     <div class="container">
         <div class="row">
             <div class="categories__slider owl-carousel">
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-029-cupcake-3"></span>
-                        <h5>Cupcake</h5>
-                    </div>
-                </div>
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-034-chocolate-roll"></span>
-                        <h5>Butter</h5>
-                    </div>
-                </div>
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-005-pancake"></span>
-                        <h5>Red Velvet</h5>
-                    </div>
-                </div>
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-030-cupcake-2"></span>
-                        <h5>Biscuit</h5>
-                    </div>
-                </div>
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-006-macarons"></span>
-                        <h5>Donut</h5>
-                    </div>
-                </div>
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-006-macarons"></span>
-                        <h5>Cupcake</h5>
-                    </div>
-                </div>
+                <?php while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
+                    <a href="shop?category=<?= $categoryItem['kategori_seo'] ?>">
+                        <div class="categories__item" style="padding: 4px; height: 120px; width: 120px;">
+                            <div class="categories__item__icon" style="display: flex; align-items: center; justify-content: center; align-content: center; height: 100%;">
+                                <h5><?= $categoryItem['nama_kategori'] ?></h5>
+                            </div>
+                        </div>
+                    </a>
+                <?php endwhile ?>
             </div>
         </div>
     </div>
@@ -110,141 +95,32 @@
 <section class="product spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-1.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
+            <?php
+            if ($product_result && $product_result->num_rows) {
+                while ($item = mysqli_fetch_array($product_result)) :
+            ?>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <?php require './templates/productItem.php'; ?>
                     </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Dozen Cupcakes</a></h6>
-                        <div class="product__item__price">$32.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-2.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Cookies and Cream</a></h6>
-                        <div class="product__item__price">$30.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
+                <?php
+                endwhile;
+            } else { ?>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        produk tidak ditemukan
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-3.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Gluten Free Mini Dozen</a></h6>
-                        <div class="product__item__price">$31.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-4.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Cookie Dough</a></h6>
-                        <div class="product__item__price">$25.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-5.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Vanilla Salted Caramel</a></h6>
-                        <div class="product__item__price">$05.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-6.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">German Chocolate</a></h6>
-                        <div class="product__item__price">$14.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-7.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Dulce De Leche</a></h6>
-                        <div class="product__item__price">$32.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/shop/product-8.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Mississippi Mud</a></h6>
-                        <div class="product__item__price">$08.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php }
+            ?>
+
         </div>
+    </div>
     </div>
 </section>
 <!-- Product Section End -->
 
 <!-- Instagram Section Begin -->
-<section class="instagram spad">
+<!-- <section class="instagram spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 p-0">
@@ -292,7 +168,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Instagram Section End -->
 
 <?php include './templates/footer.php' ?>

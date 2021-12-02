@@ -7,7 +7,16 @@
 
 <title>Cart | Crabsambal</title>
 
-<?php include './templates/header.php' ?>
+<?php include './templates/header.php';
+
+// Tampilkan produk-produk yang telah dimasukkan ke keranjang belanja
+$cart_list_result = mysqli_query(
+    $koneksi,
+    "SELECT * FROM orders_temp, produk 
+        WHERE id_session='$sid' AND orders_temp.id_produk=produk.id_produk"
+);
+
+?>
 
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -38,132 +47,82 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
                                 <th>Total</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="assets/img/shop/cart/cart-1.jpg" alt="" />
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>T-shirt Contrast Pocket</h6>
-                                        <h5>$98.49</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 30.00</td>
-                                <td class="cart__close">
-                                    <span class="icon_close"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="assets/img/shop/cart/cart-2.jpg" alt="" />
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>Diagonal Textured Cap</h6>
-                                        <h5>$98.49</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 32.50</td>
-                                <td class="cart__close">
-                                    <span class="icon_close"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="assets/img/shop/cart/cart-3.jpg" alt="" />
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>Basic Flowing Scarf</h6>
-                                        <h5>$98.49</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 47.00</td>
-                                <td class="cart__close">
-                                    <span class="icon_close"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="assets/img/shop/cart/cart-4.jpg" alt="" />
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>Basic Flowing Scarf</h6>
-                                        <h5>$98.49</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 30.00</td>
-                                <td class="cart__close">
-                                    <span class="icon_close"></span>
-                                </td>
-                            </tr>
+                            <?php
+                            $total = 0;
+                            if (mysqli_num_rows($cart_list_result) > 0) :
+
+                                while ($product_list_item = mysqli_fetch_array($cart_list_result)) :
+
+                                    $disc        = ($product_list_item['diskon'] / 100) * $product_list_item['harga'];
+                                    $hargadisc   = number_format(($product_list_item['harga'] - $disc), 0, ",", ".");
+
+                                    $subtotal    = ($product_list_item['harga'] - $disc) * $product_list_item['jumlah'];
+
+                                    $total       = $total + $subtotal;
+
+                            ?>
+                                    <tr>
+
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="assets/img/product/<?= $product_list_item['gambar'] ?>" alt="<?= $product_list_item['nama_produk'] ?>" />
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6><?= $product_list_item['nama_produk'] ?></h6>
+                                                <h5><?= 'Rp. ' .  format_rupiah($product_list_item['harga']) ?></h5>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+                                            <div class="quantity">
+                                                <form action="cart" method="GET">
+                                                    <input type="hidden" name="act" value="update">
+                                                    <input type="hidden" name="id_product" value="<?= $product_list_item['id_orders_temp'] ?>">
+                                                    <input type="number" name="jumlah" min="1" max="<?= $product_list_item['stok_temp'] ?>" value="<?= $product_list_item['jumlah'] ?>" onchange="this.form.submit()">
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price"><?= 'Rp. ' .  format_rupiah($subtotal) ?></td>
+                                        <td class="cart__close">
+                                            <form action="cart" method="GET">
+                                                <input type="hidden" name="act" value="delete">
+                                                <input type="hidden" name="id_product" value="<?= $product_list_item['id_orders_temp'] ?>">
+                                                <button class="btn btn-danger icon_close" style="padding: 5px; border-radius: 100%;" type="submit"></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endwhile;
+                            else : ?>
+                                <tr>
+                                    <td colspan="3" align="center">
+                                        Keranjang Masih Kosong
+                                    </td>
+                                </tr>
+                            <?php endif ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
-                            <a href="#">Continue Shopping</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="continue__btn update__btn">
-                            <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                            <a href="shop">Lanjutkan Belanja</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="cart__discount">
-                    <h6>Discount codes</h6>
-                    <form action="#">
-                        <input type="text" placeholder="Coupon code" />
-                        <button type="submit">Apply</button>
-                    </form>
-                </div>
                 <div class="cart__total">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Subtotal <span>$ 169.50</span></li>
-                        <li>Total <span>$ 169.50</span></li>
+                        <li>Total <span><?= 'Rp. ' . format_rupiah($total) ?></span></li>
                     </ul>
-                    <a href="checkout.php" class="primary-btn">Proceed to checkout</a>
+                    <a href="checkout" class="primary-btn">Checkout</a>
                 </div>
             </div>
         </div>
