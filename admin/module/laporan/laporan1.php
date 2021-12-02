@@ -22,8 +22,7 @@
     <div class="card-header">
       <div class="">
         <h3 class="card-title">Daftar Laporan</h3>
-        <form action="main.php?module=laporan" method="post">
-          <input type="hidden" name="pages" value="account_custom">
+        <form action="module/laporan/content.php" method="GET">
           <div style="display: flex; justify-content: flex-end">
             <table>
               <tr>
@@ -51,49 +50,11 @@
               </tr>
             </table>
           </div>
-          <div class="input-group-btn mt-3 mr-5" style="display: flex; justify-content: flex-end">
-            <button class="btn btn-secondary" name="filter" type="submit">Tampilkan </button>
+          <div class="input-group-btn mt-3 mr-5" style="display: flex; justify-content: flex-end">            
+            <button class="btn btn-secondary" type="submit">Tampilkan </button>
           </div>
         </form>
       </div>
-      <?php
-
-        if (isset($_POST['filter'])) {
-          $mulai = $_POST['mulai'];
-          $selesai = $_POST['selesai'];                  
-
-        ?>
-        <div class="card-body">
-          <table id="example1" class="table table-bordered table-striped">
-            <label>Laporan periode : <?= tgl_indo($mulai) ?> - <?= tgl_indo($selesai) ?></label>
-            <thead>
-              <tr>
-                <th>Faktur</th>
-                <th>Tanggal</th>
-                <th>Nama Produk</th>
-                <th>Jumlah</th>
-                <th>Harga</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-                $query = mysqli_query($koneksi, "SELECT c.id_orders as faktur,DATE_FORMAT(c.tgl_order, '%d-%m-%Y') as tanggal, nama_produk,jumlah,harga FROM produk a JOIN orders_detail b ON a.id_produk=b.id_produk JOIN orders c ON b.id_orders=c.id_orders WHERE c.status_order='Lunas' AND c.tgl_order BETWEEN '$mulai' AND '$selesai'");
-                 while($item = mysqli_fetch_array($query)) {
-              ?>
-              <tr>
-                <td><?= $item['faktur'] ?></td>
-                <td><?= $item['tanggal'] ?></td>
-                <td><?= $item['nama_produk'] ?></td>
-                <td><?= $item['jumlah'] ?></td>
-                <td><?= $item['harga'] ?></td>
-              </tr>
-              <?php } ?> 
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  <?php } ?>
     </div>
 
 <!-- /.card -->

@@ -39,8 +39,6 @@
               <select name="id_kategori" class="form-control select2" style="width: 100%;">
                 <option selected="selected">-- Pilih kategori produk --</option>
                 <?php
-                  include "../lib/config.php";
-                  include "../lib/koneksi.php";
                   $q = mysqli_query($koneksi, "SELECT * FROM kategori");
                   while($item=mysqli_fetch_array($q)){
                 ?>                          

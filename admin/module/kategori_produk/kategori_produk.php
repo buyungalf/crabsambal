@@ -61,7 +61,7 @@
     <a href="main.php?module=tambah_kategori">
       <button href="index.php" type="button" class="btn btn-primary">Tambah Daftar</button>
     </a>
-  </div>                      
+    </div>                      
   </ul>
 <!-- /.card -->
   </div>
