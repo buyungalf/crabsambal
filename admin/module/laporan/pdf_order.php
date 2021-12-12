@@ -1,8 +1,6 @@
 <?php
 
-$mulai = $_GET['mulai'];
-$selesai = $_GET['selesai'];
-$status = $_GET['status'];
+$id_orders = $_GET['id_orders'];
 
 $path = (getenv('MPDF_ROOT')) ? getenv('MPDF_ROOT') : __DIR__;
 require_once $path . '/vendor/autoload.php';
@@ -17,7 +15,7 @@ $mpdf = new \Mpdf\Mpdf([
 	'margin_footer' => 10
 ]);
 
-$content = file_get_contents("http://localhost:8080/crabsambal/admin/module/laporan/content.php?mulai=".$mulai."&selesai=".$selesai."&status=".$status."");
+$content = file_get_contents("http://localhost:8080/crabsambal/admin/module/order/nota.php?id_orders=".$id_orders."");
 
 $mpdf->WriteHTML($content);
 

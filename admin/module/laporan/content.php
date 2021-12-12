@@ -3,13 +3,14 @@ include "../../../lib/config.php";
 include "../../../lib/koneksi.php";
 include "../../../lib/function.php";
 
-if (!empty($_GET['mulai']) && !empty($_GET['selesai'])) {
+if (!empty($_GET['mulai']) && !empty($_GET['selesai']) && !empty($_GET['status'])) {
 	$mulai = $_GET['mulai'];
 	$selesai = $_GET['selesai'];
+	$status = $_GET['status'];
 }
 
 
-$query = mysqli_query($koneksi, "SELECT c.id_orders as faktur,DATE_FORMAT(c.tgl_order, '%Y-%m-%d') as tanggal, nama_produk,jumlah,harga FROM produk a JOIN orders_detail b ON a.id_produk=b.id_produk JOIN orders c ON b.id_orders=c.id_orders WHERE c.status_order='Lunas' AND c.tgl_order BETWEEN '$mulai' AND '$selesai'");
+$query = mysqli_query($koneksi, "SELECT c.id_orders as faktur,DATE_FORMAT(c.tgl_order, '%Y-%m-%d') as tanggal, nama_produk,jumlah,harga FROM produk a JOIN orders_detail b ON a.id_produk=b.id_produk JOIN orders c ON b.id_orders=c.id_orders WHERE c.status_order='$status' AND c.tgl_order BETWEEN '$mulai' AND '$selesai'");
 
 ?>
 
@@ -68,7 +69,8 @@ table thead td { background-color: #EEEEEE;
 <sethtmlpageheader name="myheader" value="on" show-this-page="1" />
 <sethtmlpagefooter name="myfooter" value="on" />
 
-<div style="text-align: left;">Laporan penjualan produk <?= tgl_indo($mulai) ?> - <?= tgl_indo($selesai) ?></div>
+<div style="text-align: left;">Laporan penjualan produk periode <?= tgl_indo($mulai) ?> - <?= tgl_indo($selesai) ?></div>
+<div style="text-align: left;">Status : <?= $status ?></div>
 
 <br />
 
@@ -110,7 +112,7 @@ $total += $harga;
 </table>
 <br>
 <div style="text-align: center">
-	<a class="" href="pdf.php?mulai=<?= $mulai ?>&selesai=<?= $selesai ?>">Cetak</a>	
+	<a class="" href="pdf.php?mulai=<?= $mulai ?>&selesai=<?= $selesai ?>&status=<?= $status ?>">Cetak</a>	
 </div>
 
 </body>

@@ -82,9 +82,10 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Deskripsi</label>
               <div class="col-sm-10">
-                <textarea class="form-control" style="height: 200px" name="static_content"><?= $item['static_content'] ?></textarea>
+                <textarea id="summernote" class="form-control" style="height: 200px" name="static_content"><?= $item['static_content'] ?></textarea>
               </div>
             </div>
+          </div>
 
           <!-- /.card-body -->
           <div class="card-footer">
@@ -93,10 +94,9 @@
           </div>
           <!-- /.card-footer -->
         </form>
-      </div>
-      <!-- /.card -->
-    </div>
+<!-- /.card -->
+  </div>
   </div><!-- /.container-fluid -->
 </section>
-    <!-- /.content -->
-  </div>
+<!-- /.content -->
+</div>

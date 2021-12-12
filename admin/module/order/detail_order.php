@@ -93,8 +93,10 @@
         </tbody>
       </table>
     </div>
+
     <div class="row invoice-info">
-      <div class="col-sm-9 invoice-col">
+      <div class="col-sm-9 invoice-col ml-4">
+        <a class="btn btn-primary" href="module/order/nota.php?id_orders=<?= $id_orders ?>"><i class="fas fa-print"></i></a>  
       </div>
       <!-- /.col -->
       <?php
