@@ -7,7 +7,11 @@
 
 <title>Cara Pembelian | Crabsambal</title>
 
-<?php include './templates/header.php' ?>
+<?php include './templates/header.php';
+
+$result_cara_beli = mysqli_query($koneksi, "SELECT * FROM modul WHERE nama_modul = 'Cara Pembelian'");
+
+?>
 
 <!-- Blog Hero Begin -->
 <div class="blog-hero set-bg" data-setbg="assets/img/blog/details/blog-hero.jpg">
@@ -30,8 +34,9 @@
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8">
                 <div class="blog__details__content">
+                    <?= mysqli_fetch_array($result_cara_beli)['static_content'] ?>
 
-                    <div class="blog__details__text" style="margin-bottom: 38px;">
+                    <!-- <div class="blog__details__text" style="margin-bottom: 38px;">
                         <p>
                             The cast brass and cast stainless steel burners have the
                             smallest burrs — by far. This will mean less chaos in the gas
@@ -81,7 +86,7 @@
                                 knife, wielded firmly,
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

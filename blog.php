@@ -54,7 +54,7 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
+                        <a href="blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="blog__item">
@@ -76,7 +76,7 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
+                        <a href="blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="blog__item">
@@ -98,7 +98,7 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
+                        <a href="blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="blog__item">
@@ -120,7 +120,7 @@
                             your cooking you can easily change the flavors of your recipes
                             in many different ways, according to which herbs you add...
                         </p>
-                        <a href="<?= $base_url ?>blog-details.php">READ MORE</a>
+                        <a href="blog-details.php">READ MORE</a>
                     </div>
                 </div>
                 <div class="shop__pagination">

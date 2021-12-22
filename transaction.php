@@ -30,21 +30,20 @@ if (empty($id_order)) {
   "
     );
 
-    if (mysqli_num_rows($product_result) > 0) {
+    $orders_result = mysqli_query(
+        $koneksi,
+        "SELECT kustomer.nama_lengkap, kustomer.alamat, kustomer.email, kustomer.telpon
+        FROM kustomer
+        JOIN orders
+            ON orders.id_kustomer = kustomer.id_kustomer
+        WHERE orders.id_orders = {$id_order}"
+    );
 
-        $id_kustomer = mysqli_fetch_array($product_result)['id_kustomer'];
-
-        $kustomer_result = mysqli_query($koneksi, "SELECT kustomer.nama_lengkap, kustomer.alamat, kustomer.email, kustomer.telpon FROM kustomer WHERE kustomer.id_kustomer = '{$id_kustomer}'");
-
-        $kustomer_item = mysqli_fetch_array($kustomer_result);
-
-        $nama = $kustomer_item['nama_lengkap'];
-        $alamat = $kustomer_item['alamat'];
-        $telpon = $kustomer_item['email'];
-        $email = $kustomer_item['telpon'];
-    } else {
-        echo "<script> window.location='shop'</script>\n";
-    }
+    $kustomer_order = mysqli_fetch_array($orders_result);
+    $nama = $kustomer_order['nama_lengkap'] ?? '';
+    $alamat = $kustomer_order['alamat'] ?? '';
+    $telpon = $kustomer_order['email'] ?? '';
+    $email = $kustomer_order['telpon'] ?? '';
 }
 
 // var_dump();nama_lengkap
@@ -124,16 +123,24 @@ if (empty($id_order)) {
 
                                                 <?php
                                                 $total = 0;
+                                                $totalberat = 0;
+                                                $ongkoskirim = 0;
+                                                $grandtotal = 0;
+
                                                 if (mysqli_num_rows($product_result) > 0) :
 
                                                     while ($product_list_item = mysqli_fetch_array($product_result)) :
 
+
                                                         $disc        = ($product_list_item['diskon'] / 100) * $product_list_item['harga'];
                                                         $hargadisc   = number_format(($product_list_item['harga'] - $disc), 0, ",", ".");
-
                                                         $subtotal    = ($product_list_item['harga'] - $disc) * $product_list_item['jumlah'];
 
                                                         $total       = $total + $subtotal;
+                                                        $grandtotal    = $total + $ongkoskirim;
+
+                                                        $subtotalberat = $product_list_item['berat'] * $product_list_item['jumlah']; // total berat per item produk 
+                                                        $totalberat  = $totalberat + $subtotalberat;
 
                                                 ?>
 
@@ -165,17 +172,16 @@ if (empty($id_order)) {
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="cart__total">
-                                        <?php $total = 0; ?>
                                         <ul>
                                             <li>Total <span><?= 'Rp. ' . format_rupiah($total) ?></span></li>
-                                            <li>Ongkos Kirim <span><?= 'Rp. ' . format_rupiah($total) ?></span></li>
-                                            <li>Total Berat <span><?= 'Rp. ' . format_rupiah($total) ?></span></li>
-                                            <li>Grand Total <span><?= 'Rp. ' . format_rupiah($total) ?></span></li>
+                                            <li>Ongkos Kirim <span><?= $ongkoskirim == 0 ? $ongkoskirim : 'Rp. ' . format_rupiah($ongkoskirim) ?></span></li>
+                                            <li>Total Berat <span><?= $totalberat . ' kg' ?></span></li>
+                                            <li>Grand Total <span><?= 'Rp. ' . format_rupiah($grandtotal) ?></span></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <p>Data order dan nomor rekening transfer sudah terkirim ke email Anda. <br />
+                            <p class="mt-5">Data order dan nomor rekening transfer sudah terkirim ke email Anda. <br />
                                 Apabila Anda tidak melakukan pembayaran dalam 3 hari, maka transaksi dianggap batal.</p>
                         </div>
                     </div>

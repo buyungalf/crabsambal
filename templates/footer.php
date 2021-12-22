@@ -28,14 +28,6 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="footer__newslatter">
-                    <h6>Subscribe</h6>
-                    <p>Get latest updates and offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Email">
-                        <button type="submit"><i class="fa fa-send-o"></i></button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
