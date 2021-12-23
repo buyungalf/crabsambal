@@ -73,7 +73,16 @@
                 </select>
               </div>
             </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Status</label>
+              <div class="col-sm-10">
+                <select name="status" class="form-control select2" style="width: 100%;"> 
+                    <option value="Biasa">Biasa</option>
+                    <option value="Reseller">Reseller</option>
+                </select>
+              </div>
             </div>
+          </div>
           <!-- /.card-body -->
           <div class="card-footer">
           	<button class="btn btn-default float-right ml-2">Batal</button>

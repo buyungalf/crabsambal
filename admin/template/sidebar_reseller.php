@@ -19,17 +19,14 @@
           include "../lib/config.php";
           include "../lib/koneksi.php";
           if ($_GET) {
-            $page = $_GET['pages'];
+            $page = "?module=".$_GET['module'];
             }
             $username = $_SESSION['username'];
-            $realname = $_SESSION['realname'];
-            $query = mysqli_query($koneksi, "SELECT * FROM tb_user WHERE username='$username'");
+            $query = mysqli_query($koneksi, "SELECT * FROM kustomer WHERE email='$username'");
             $user = mysqli_fetch_array($query);
-          
-          
           ?>
         <div class="info">
-          <a href="#" class="d-block"><?= $user['realname'] ?></a>
+          <a href="#" class="d-block"><?= $user['nama_lengkap'] ?></a>
         </div>
       </div>
 
@@ -39,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-            <a href="main.php?pages=home" class = 'nav-link <?php if ($page == 'home') echo " active"; ?> '>
+            <a href="main.php?module=home" class = 'nav-link <?php if ($page == 'home') echo " active"; ?> '>
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home 
@@ -47,30 +44,20 @@
             </a>            
           </li>
           <li class="nav-header">MAIN</li>
+          <?php
+            $query = mysqli_query($koneksi, "SELECT * FROM modul WHERE id_modul=42 or id_modul=49");
+            $i=1;
+            while($mod=mysqli_fetch_array($query)){                              
+          ?>
           <li class="nav-item">
-            <a href="main.php?pages=booking" class = 'nav-link <?php if ($page == 'booking' OR $page == 'booking_detail') echo " active"; ?> '>
+            <a href="main.php<?= $mod['link'] ?>" class = 'nav-link <?php if ($page == $mod['link']) echo " active"; ?> '>
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Booking
+                <?= $mod['nama_modul'] ?>
               </p>
             </a>            
           </li>
-          <li class="nav-item">
-            <a href="main.php?pages=check_in" class = 'nav-link <?php if ($page == 'check_in') echo " active"; ?> '>
-              <i class="nav-icon fas fa-hotel"></i>
-              <p>
-                Check-in
-              </p>
-            </a>            
-          </li>
-          <li class="nav-item">
-            <a href="main.php?pages=reservasi" class = 'nav-link <?php if ($page == 'reservasi') echo " active"; ?> '>
-              <i class="nav-icon fas fa-suitcase-rolling"></i>
-              <p>
-                Reservasi
-              </p>
-            </a>            
-          </li>              
+          <?php } ?>
           <li class="nav-header">SETTINGS</li>
           <li class="nav-item">
             <a href="logout.php" class="nav-link">

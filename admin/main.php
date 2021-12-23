@@ -4,9 +4,10 @@ session_start();
 if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
     include "index.php";
 } else {
-        include "../lib/koneksi.php";
-        include "../lib/function.php";
-        include "template/header.php";
+    include "../lib/koneksi.php";
+    include "../lib/function.php";
+    include "template/header.php";
+    if ($_SESSION['level'] == 'admin') {
         include "template/sidebar.php";
 
         if (empty($_GET)) {
@@ -102,4 +103,32 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
         }
 
         include "template/footer.php";    
+    } else if ($_SESSION['level'] == 'reseller') {
+        include "template/sidebar_reseller.php";
+
+        if (empty($_GET)) {
+            include "module/home/home.php";
+        } else if ($_GET['module'] == 'home') {
+            include "module/home/home.php"; 
+                                
+        } else if ($_GET['module'] == 'order') {
+            include "module/order_reseller/order.php";   
+        } else if ($_GET['module'] == 'detail_order') {
+            include "module/order_reseller/detail_order.php";  
+        } else if ($_GET['module'] == 'tambah_order') {
+            include "module/order_reseller/tambah_order.php";
+        } else if ($_GET['module'] == 'order_manual') {
+            include "module/order_reseller/order_manual.php";
+        } else if ($_GET['module'] == 'tambah_item') {
+            include "module/order_reseller/tambah_item.php";   
+                                
+        } else if ($_GET['module'] == 'password') {
+            include "module/ganti_password/password.php";
+
+        }  else {
+            include "module/home/home.php";
+        }
+
+        include "template/footer.php"; 
+    }
 }

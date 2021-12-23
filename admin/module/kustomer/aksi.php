@@ -15,8 +15,9 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
             $alamat = $_POST['alamat'];
             $telpon = $_POST['telpon'];
             $id_kota = $_POST['id_kota'];
+            $status = $_POST['status'];
 
-            $query = mysqli_query($koneksi,"INSERT INTO kustomer(nama_lengkap, email, password, alamat, telpon, id_kota) VALUES ('$nama_lengkap', '$email', '$password', '$alamat', '$telpon', '$id_kota')");
+            $query = mysqli_query($koneksi,"INSERT INTO kustomer(nama_lengkap, email, password, alamat, telpon, id_kota, status) VALUES ('$nama_lengkap', '$email', '$password', '$alamat', '$telpon', '$id_kota', '$status')");
             if($query) {
                 echo"<script> alert('Data Kustomer Berhasil Masuk'); window.location = '$admin_url'+'main.php?module=kustomer'; </script>"; 
             } else {
@@ -29,8 +30,9 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
             $alamat = $_POST['alamat'];
             $telpon = $_POST['telpon'];
             $id_kota = $_POST['id_kota'];
+            $status = $_POST['status'];
 
-            $query = mysqli_query($koneksi,"UPDATE kustomer SET nama_lengkap='$nama_lengkap', alamat='$alamat', telpon='$telpon', email='$email', id_kota='$id_kota' WHERE id_kustomer='$id_kustomer'");
+            $query = mysqli_query($koneksi,"UPDATE kustomer SET nama_lengkap='$nama_lengkap', alamat='$alamat', telpon='$telpon', email='$email', id_kota='$id_kota', status='$status' WHERE id_kustomer='$id_kustomer'");
             if($query) {
                 echo"<script> alert('Data Kustomer Berhasil Diubah'); window.location = '$admin_url'+'main.php?module=kustomer'; </script>"; 
             } else {

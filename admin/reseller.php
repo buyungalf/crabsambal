@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Crabsambal | Log in Admin</title>
+  <title>Crabsambal | Log in Reseller</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,9 +22,9 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Log in Admin</p>
+      <p class="login-box-msg">Log in Reseller</p>
 
-      <form action="login.php" method="post">
+      <form action="login_reseller.php" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="username" placeholder="Email">
           <div class="input-group-append">
@@ -45,9 +45,8 @@
           <div class="col-8">
             <div class="icheck-primary">
               <p class="mb-1">
-                <a href="reseller.php">Login Reseller</a>
-              </p>
-              <p class="mb-1">
+                <a href="index.php">Login Admin</a>
+              </p><p class="mb-1">
                 <a href="forgot_password.php">Lupa Password?</a>
               </p>
             </div>
@@ -70,7 +69,7 @@
 <script src="asset/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
+<!-- ResellerLTE App -->
 <script src="asset/dist/js/adminlte.min.js"></script>
 </body>
 </html>

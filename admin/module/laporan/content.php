@@ -112,7 +112,7 @@ $total += $harga;
 </table>
 <br>
 <div style="text-align: center">
-	<a class="" href="pdf.php?mulai=<?= $mulai ?>&selesai=<?= $selesai ?>&status=<?= $status ?>">Cetak</a>	
+	<a class="" href="pdf.php?mulai=<?= $mulai ?>&selesai=<?= $selesai ?>&status=<?= $status ?>" target="_blank">Cetak</a>	
 </div>
 
 </body>

@@ -24,7 +24,12 @@ if (empty($_SESSION['username']) AND empty($_SESSION['password'])) {
                 $_SESSION['errors3'] = "Password tidak cocok!";
                 echo "<script>window.location = '$admin_url'+'main.php?module=password';</script>";
             } else {
-                $query = mysqli_query($koneksi, "UPDATE admins SET username='$user', password = '$password' WHERE username='$user'");
+                if ($_SESSION['level'] == 'admin') {
+                    $query = mysqli_query($koneksi, "UPDATE admins SET username='$user', password = '$password' WHERE username='$user'");
+                } else if ($_SESSION['level'] == 'reseller') {
+                    $query = mysqli_query($koneksi, "UPDATE kustomer SET  password = '$password' WHERE email='$user'");
+                }
+                
                 if($query) {
                     echo"<script> alert('Password Berhasil Diubah'); window.location = '$admin_url'+'main.php?module=password'; </script>";
                 } else {
