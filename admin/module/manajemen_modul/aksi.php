@@ -13,9 +13,8 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
         	$link = $_POST['link'];
         	$status = $_POST['status'];
         	$aktif = $_POST['aktif'];
-            $slug = slug($nama_modul);
 
-            $query = mysqli_query($koneksi,"INSERT INTO modul(nama_modul, link, status, aktif, slug) VALUES ('$nama_modul', '$link', '$status', '$aktif', '$slug')");
+            $query = mysqli_query($koneksi,"INSERT INTO modul(nama_modul, link, status, aktif) VALUES ('$nama_modul', '$link', '$status', '$aktif')");
             if($query) {
                 echo"<script> alert('Data Modul Berhasil Masuk'); window.location = '$admin_url'+'main.php?module=modul'; </script>"; 
             } else {
@@ -29,7 +28,7 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
         	$aktif = $_POST['aktif'];
             $slug = slug($nama_modul);
 
-            $query = mysqli_query($koneksi,"UPDATE modul SET nama_modul='$nama_modul', link='$link', status='$status', aktif='$aktif', slug='$slug' WHERE id_modul='$id_modul'");
+            $query = mysqli_query($koneksi,"UPDATE modul SET nama_modul='$nama_modul', link='$link', status='$status', aktif='$aktif' WHERE id_modul='$id_modul'");
             if($query) {
                 echo"<script> alert('Data Modul Berhasil Diubah'); window.location = '$admin_url'+'main.php?module=modul'; </script>"; 
             } else {

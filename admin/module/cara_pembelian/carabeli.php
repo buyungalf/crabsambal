@@ -34,7 +34,7 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Cara Beli</label>
               <div class="col-sm-10">
-                <textarea class="form-control" style="height: 400px" name="static_content"><?= $item['static_content'] ?></textarea>
+                <textarea id="summernote" class="form-control" style="height: 400px" name="static_content"><?= $item['static_content'] ?></textarea>
               </div>
             </div>
           <!-- /.card-body -->

@@ -47,11 +47,6 @@
           <label class="col-sm-2 col-form-label">Status Order</label>
           <div class="col-sm-10">
             <label class="col-form-label"><?= $item['status_order'] ?></label>
-            <!-- <select name="id_kategori" class="form-control select2" style="width: 100%;">
-              <option <?php if ($item['status_order'] == 'Baru') { echo "selected = 'selected'"; } ?>>Baru</option>
-              <option <?php if ($item['status_order'] == 'Lunas') { echo "selected = 'selected'"; } ?>>Lunas</option>
-              <option <?php if ($item['status_order'] == 'Batal') { echo "selected = 'selected'"; } ?>>Batal</option>
-            </select> -->
           </div>
         </div>
     </div>
@@ -98,8 +93,10 @@
         </tbody>
       </table>
     </div>
+
     <div class="row invoice-info">
-      <div class="col-sm-9 invoice-col">
+      <div class="col-sm-9 invoice-col ml-4">
+        <a class="btn btn-primary" href="module/order/nota.php?id_orders=<?= $id_orders ?>"><i class="fas fa-print"></i></a>  
       </div>
       <!-- /.col -->
       <?php

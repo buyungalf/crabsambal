@@ -19,7 +19,7 @@
           include "../lib/config.php";
           include "../lib/koneksi.php";
           if ($_GET) {
-            $page = $_GET['module'];
+            $page = "?module=".$_GET['module'];
             }
             $username = $_SESSION['username'];
             $query = mysqli_query($koneksi, "SELECT * FROM admins WHERE username='$username'");
@@ -54,7 +54,7 @@
             while($mod=mysqli_fetch_array($query)){                              
           ?>
           <li class="nav-item">
-            <a href="main.php<?= $mod['link'] ?>" class = 'nav-link <?php if ($page == $mod['slug']) echo " active"; ?> '>
+            <a href="main.php<?= $mod['link'] ?>" class = 'nav-link <?php if ($page == $mod['link']) echo " active"; ?> '>
               <i class="nav-icon fas fa-book"></i>
               <p>
                 <?= $mod['nama_modul'] ?>

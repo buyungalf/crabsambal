@@ -56,9 +56,15 @@
           <?php $i++;} ?> 
         </tbody>
       </table>
-    </div>
+      <div class="input-group-btn float-sm-right mt-3">
+    <a href="main.php?module=tambah_order">
+      <button href="index.php" type="button" class="btn btn-primary">Order Manual</button>
+    </a>
+  </div>
+  </div>
     <!-- /.card-body -->
   </div>
+
 <!-- /.card -->
   </div>
   </div><!-- /.container-fluid -->

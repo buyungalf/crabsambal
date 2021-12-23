@@ -29,7 +29,6 @@
           <tr>
             <th style="width: 20px">#</th>
             <th>Nama Modul</th>
-            <th></th>
             <th>Link</th>
             <th>Status</th>
             <th>Aktif</th>
@@ -45,7 +44,6 @@
           <tr>
             <td><?= $i ?>.</td>
             <td><?= $item['nama_modul'] ?></td>
-            <td><?= $item['slug'] ?></td>
             <td><?= $item['link'] ?></td>
             <td><?= $item['status'] ?></td>
             <td><?= $item['aktif'] ?></td>
