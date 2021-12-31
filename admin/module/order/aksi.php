@@ -27,8 +27,7 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
 
             $query = mysqli_query($koneksi, "INSERT INTO orders (id_orders, status_order, tgl_order, jam_order, id_kustomer) VALUES ('$id_orders', 'Baru', '$tgl_order', '$jam_order', $id_kustomer)");
             if($query) {
-                unset($_SESSION['id_kustomer']);
-                echo"<script> alert('Order berhasil!'); window.location = '$admin_url'+'main.php?module=order'; </script>"; 
+                echo"<script> alert('Order berhasil!'); window.location = '$admin_url'+'module/order/nota.php?id_orders='+'$id_orders'; </script>"; 
             } else {
                 echo "<script> alert('Order gagal'); window.location = '$admin_url'+'main.php?module=order_manual';</script>";
             }

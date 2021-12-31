@@ -60,15 +60,6 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Status</label>
-              <div class="col-sm-10">
-                <select name="status" class="form-control select2" style="width: 100%;"> 
-                    <option value="Biasa" <?php if ($item['status'] == 'biasa') echo " selected='selected'"; ?>>Biasa</option>
-                    <option value="Reseller" <?php if ($item['status'] == 'reseller') echo " selected='selected'"; ?>>Reseller</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
               <label class="col-sm-2 col-form-label">Kota</label>
               <div class="col-sm-10">
                 <select name="id_kota" class="form-control select2" style="width: 100%;"> 

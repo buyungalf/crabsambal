@@ -5,20 +5,20 @@ $username = $_POST['username'];
 $password = md5($_POST['password']);
 
 if (!ctype_alnum($password)) {
-	include "login2.php";
+	include "login_reseller2.php";
 } else {
-	$login = mysqli_query($koneksi, "SELECT * FROM kustomer WHERE email='$username' AND password='$password' AND status='reseller'");
+	$login = mysqli_query($koneksi, "SELECT * FROM reseller WHERE email='$username' AND password='$password'");
 	$match = mysqli_num_rows($login);
 	$u = mysqli_fetch_array($login);
 
 	if ($match > 0) {
 		session_start();
-		$_SESSION['id_kustomer'] = $u['id_kustomer'];
+		$_SESSION['id_reseller'] = $u['id_reseller'];
 		$_SESSION['username'] = $u['email'];
 		$_SESSION['password'] = $u['password'];
-		$_SESSION['level'] = $u['status'];
+		$_SESSION['level'] = "reseller";
 		header('location:main.php?module=home');
 	} else {
-		include "login2.php";
+		include "login_reseller2.php";
 	}
 }

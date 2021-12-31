@@ -154,6 +154,10 @@ $grandtotal_rp  = format_rupiah($grandtotal);
 <div style="text-align: center">
 	<a class="" href="../laporan/pdf_order.php?id_orders=<?= $id_orders ?>">Cetak</a>	
 </div>
+<br>
+<div style="text-align: center">
+	<a class="" href="../../main.php?module=order">Kembali</a>	
+</div>
 
 </body>
 </html>

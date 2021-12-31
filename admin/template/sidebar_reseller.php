@@ -22,7 +22,7 @@
             $page = "?module=".$_GET['module'];
             }
             $username = $_SESSION['username'];
-            $query = mysqli_query($koneksi, "SELECT * FROM kustomer WHERE email='$username'");
+            $query = mysqli_query($koneksi, "SELECT * FROM reseller WHERE email='$username'");
             $user = mysqli_fetch_array($query);
           ?>
         <div class="info">
@@ -45,7 +45,7 @@
           </li>
           <li class="nav-header">MAIN</li>
           <?php
-            $query = mysqli_query($koneksi, "SELECT * FROM modul WHERE id_modul=42 or id_modul=49");
+            $query = mysqli_query($koneksi, "SELECT * FROM modul WHERE id_modul=42 or id_modul=49 or id_modul=59");
             $i=1;
             while($mod=mysqli_fetch_array($query)){                              
           ?>

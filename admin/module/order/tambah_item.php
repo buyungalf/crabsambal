@@ -71,13 +71,12 @@
           <label class="col-sm-2 col-form-label">Nama Barang</label>
           <div class="col-sm-10">
             <select class="form-control select2" name="id_produk" style="width: 100%;">
-              <option value="">-- Pilih Produk --</option>
               <?php
                 $q = mysqli_query($koneksi, "SELECT * FROM produk");
                 while($item=mysqli_fetch_array($q)){
               ?>                          
                 <option value="<?php echo $item['id_produk']; ?>">
-                  <?php echo $item['nama_produk']; ?>
+                  <?php echo $item['nama_produk']; ?> - Rp.<?php echo rp($item['harga']); ?>
                 </option>
                 <?php } ?>
             </select>
