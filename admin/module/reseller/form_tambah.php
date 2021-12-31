@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Kustomer</h1>
+            <h1 class="m-0">Reseller</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?= $admin_url ?>main.php?pages=home">Home</a></li>
-              <li class="breadcrumb-item active">Kustomer</li>
+              <li class="breadcrumb-item active">Reseller</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,11 +21,11 @@
 <!-- Horizontal Form -->
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Form Tambah Kustomer</h3>
+          <h3 class="card-title">Form Tambah Reseller</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="module/kustomer/aksi.php" class="form-horizontal">
+        <form method="post" action="module/reseller/aksi.php" class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nama Lengkap</label>
@@ -70,6 +70,15 @@
                             <?php echo $item['nama_kota']; ?>
                           </option>
                   <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Status</label>
+              <div class="col-sm-10">
+                <select name="status" class="form-control" style="width: 100%;"> 
+                    <option value="Aktif">Aktif</option>
+                    <option value="Blokir">Blokir</option>
                 </select>
               </div>
             </div>

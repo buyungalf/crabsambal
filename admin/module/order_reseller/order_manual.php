@@ -24,7 +24,10 @@
     </div>
     <!-- /.card-header -->
     <form action="module/order/aksi.php" method="post">
-    <?php 
+    <?php
+    if (isset($_POST['pelanggan'])) {
+      $_SESSION['id_kustomer'] = $_POST['id_kustomer'];
+    }
     $query = mysqli_query($koneksi, "SELECT max(id_orders) as id_orders FROM orders");
     $item = mysqli_fetch_array($query);
     $id_order = $item['id_orders']+1;

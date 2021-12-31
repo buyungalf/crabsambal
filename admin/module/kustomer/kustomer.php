@@ -33,13 +33,12 @@
             <th>Email</th>
             <th>Telpon</th>
             <th>Kota</th>
-            <th>Status</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           <?php
-            $query = mysqli_query($koneksi, "SELECT * FROM kustomer a JOIN kota b ON a.id_kota = b.id_kota");
+            $query = mysqli_query($koneksi, "SELECT a.*,b.* FROM kustomer a JOIN kota b ON a.id_kota = b.id_kota");
             $i=1;
             while($kt=mysqli_fetch_array($query)){                              
           ?>
@@ -50,7 +49,6 @@
             <td><?= $kt['email'] ?></td>
             <td><?= $kt['telpon'] ?></td>
             <td><?= $kt['nama_kota'] ?></td>
-            <td><?= $kt['status'] ?></td>
             <td>
               <div class="input-group-btn">
                 <a href="<?= $admin_url; ?>main.php?module=edit_kustomer&id_kustomer=<?= $kt['id_kustomer']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>

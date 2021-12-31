@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Order</h1>
+            <h1 class="m-0">Kustomer</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?= $admin_url ?>main.php?module=home">Home</a></li>
-              <li class="breadcrumb-item active">Order</li>
+              <li class="breadcrumb-item active">Kustomer</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,7 +20,7 @@
 <div class="col-12">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Daftar Order</h3>
+      <h3 class="card-title">Daftar Kustomer</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -28,42 +28,47 @@
         <thead>
           <tr>
             <th style="width: 20px">#</th>
-            <th>Customer</th>
-            <th>Tanggal | Jam</th>
-            <th>Status</th>
+            <th>Nama Lengkap</th>
+            <th>Alamat</th>
+            <th>Email</th>
+            <th>Telpon</th>
+            <th>Kota</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
-          <?php
-            $id_reseller = $_SESSION['id_reseller'];
-            $query = mysqli_query($koneksi, "SELECT a.*, b.* FROM orders a JOIN kustomer b ON a.id_kustomer = b.id_kustomer JOIN reseller c ON b.id_reseller = c.id_reseller WHERE c.id_reseller =$id_reseller");
+          <?php            
+            $query = mysqli_query($koneksi, "SELECT * FROM reseller a JOIN kota b ON a.id_kota = b.id_kota");
             $i=1;
-            while($item=mysqli_fetch_array($query)){                              
+            while($kt=mysqli_fetch_array($query)){
           ?>
           <tr>
             <td><?= $i ?>.</td>
-            <td><?= $item['nama_lengkap'] ?></td>
-            <td><?= tgl_indo($item['tgl_order']) ?> | <?= $item['jam_order'] ?></td>
-            <td><?= $item['status_order'] ?></td>
+            <td><?= $kt['nama_lengkap'] ?></td>
+            <td><?= $kt['alamat'] ?></td>
+            <td><?= $kt['email'] ?></td>
+            <td><?= $kt['telpon'] ?></td>
+            <td><?= $kt['nama_kota'] ?></td>
             <td>
               <div class="input-group-btn">
-                <a href="<?= $admin_url; ?>main.php?module=detail_order&id_orders=<?= $item['id_orders']; ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+                <a href="<?= $admin_url; ?>main.php?module=edit_reseller&id_reseller=<?= $kt['id_reseller']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="<?= $admin_url; ?>module/reseller/aksi.php?id_reseller=<?= $kt['id_reseller']; ?>&aksi=hapus" class="btn btn-danger"><i class="fas fa-trash"></i></a>
               </div>
             </td>
           </tr>
           <?php $i++;} ?> 
         </tbody>
       </table>
-      <div class="input-group-btn float-sm-right mt-3">
-    <a href="main.php?module=tambah_order">
-      <button href="index.php" type="button" class="btn btn-primary">Order Manual</button>
-    </a>
-  </div>
-  </div>
+    </div>
     <!-- /.card-body -->
   </div>
-
+  <ul class="nav navbar-right panel_toolbox">
+    <div class="input-group-btn float-right">
+    <a href="main.php?module=tambah_reseller">
+      <button href="index.php" type="button" class="btn btn-primary">Tambah Daftar</button>
+    </a>
+  </div>                      
+  </ul>
 <!-- /.card -->
   </div>
   </div><!-- /.container-fluid -->

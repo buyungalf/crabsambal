@@ -98,6 +98,13 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
         } else if ($_GET['module'] == 'edit_kustomer') {
             include "module/kustomer/form_edit.php";
 
+        } else if ($_GET['module'] == 'reseller') {
+            include "module/reseller/reseller.php";
+        } else if ($_GET['module'] == 'tambah_reseller') {
+            include "module/reseller/form_tambah.php";
+        } else if ($_GET['module'] == 'edit_reseller') {
+            include "module/reseller/form_edit.php";
+
         }  else {
             include "module/home/home.php";
         }
@@ -120,7 +127,14 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
         } else if ($_GET['module'] == 'order_manual') {
             include "module/order_reseller/order_manual.php";
         } else if ($_GET['module'] == 'tambah_item') {
-            include "module/order_reseller/tambah_item.php";   
+            include "module/order_reseller/tambah_item.php";
+
+        } else if ($_GET['module'] == 'kustomer') {
+            include "module/kustomer/kustomer_reseller.php";
+        } else if ($_GET['module'] == 'tambah_kustomer') {
+            include "module/kustomer/form_tambah.php";
+        } else if ($_GET['module'] == 'edit_kustomer') {
+            include "module/kustomer/form_edit.php";
                                 
         } else if ($_GET['module'] == 'password') {
             include "module/ganti_password/password.php";
