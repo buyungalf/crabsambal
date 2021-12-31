@@ -32,7 +32,7 @@ if (empty($id_order)) {
 
     $orders_result = mysqli_query(
         $koneksi,
-        "SELECT kustomer.nama_lengkap, kustomer.alamat, kustomer.email, kustomer.telpon
+        "SELECT kustomer.nama_lengkap, kustomer.alamat, kustomer.email, kustomer.telpon, orders.status_order
         FROM kustomer
         JOIN orders
             ON orders.id_kustomer = kustomer.id_kustomer
@@ -42,8 +42,9 @@ if (empty($id_order)) {
     $kustomer_order = mysqli_fetch_array($orders_result);
     $nama = $kustomer_order['nama_lengkap'] ?? '';
     $alamat = $kustomer_order['alamat'] ?? '';
-    $telpon = $kustomer_order['email'] ?? '';
-    $email = $kustomer_order['telpon'] ?? '';
+    $telpon = $kustomer_order['telpon'] ?? '';
+    $email = $kustomer_order['email'] ?? '';
+    $status = $kustomer_order['status_order'] ?? '';
 }
 
 // var_dump();nama_lengkap
@@ -101,6 +102,10 @@ if (empty($id_order)) {
                             <tr>
                                 <td>E-mail </td>
                                 <td> : <?= $email ?? '' ?> </td>
+                            </tr>
+                            <tr>
+                                <td>Status </td>
+                                <td> : <?= $status ?? '' ?> </td>
                             </tr>
                         </table>
 

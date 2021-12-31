@@ -23,6 +23,10 @@
     </div> -->
 
     <?php
+    // session_destroy();
+
+    $user = $_SESSION['user'] ?? [];
+
     $sid = session_id();
 
     // handle delete 
@@ -140,12 +144,20 @@
                                     <img src="assets/img/logo.png" alt="" />
                                 </a>
                             </div>
+                            <div class="header__top__left">
+
+                                <?php if (!empty($user)) : ?>
+                                    <ul>
+                                        <li><a href="dashboard.php">Hi, <?= explode(' ', $user['nama'])[0] ?? "" ?></a></li>
+                                        <li><a href="logout.php">Logout</a></li>
+                                    </ul>
+                                <?php else : ?>
+                                    <ul>
+                                        <li><a href="login.php">Login</a></li>
+                                    </ul>
+                                <?php endif ?>
+                            </div>
                             <div class="header__top__right">
-                                <div class="header__top__right__links">
-                                    <a href="wisslist">
-                                        <img src="assets/img/icon/heart.png" alt="" />
-                                    </a>
-                                </div>
                                 <div class="header__top__right__cart">
                                     <a href="cart">
                                         <img src="assets/img/icon/cart.png" alt="" />

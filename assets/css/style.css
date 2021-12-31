@@ -1118,6 +1118,7 @@ ol {
 -----------------------*/
 .footer {
     padding-top: 70px;
+    background: #000000;
 }
 
 .footer__widget {

@@ -103,7 +103,7 @@ if ($_POST) {
                     <form action="" method="POST">
                         <div class="row">
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 my-2 my-lg-0">
                                 <input type="text" placeholder="Nama" name="nama" value="<?= $_SESSION['hubungi']['nama'] ?? '' ?>" />
                                 <?php if (!empty($errors['nama'])) :
 
@@ -112,7 +112,7 @@ if ($_POST) {
                                 <?php endfor;
                                 endif; ?>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 my-2 my-lg-0">
                                 <input type="email" placeholder="Email" name="email" value="<?= $_SESSION['hubungi']['email'] ?? '' ?>" />
                                 <?php if (!empty($errors['email'])) :
                                     for ($i = 0; $i < count($errors['email']); $i++) : ?>
@@ -120,7 +120,7 @@ if ($_POST) {
                                 <?php endfor;
                                 endif; ?>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 my-2 mb-4 my-lg-4">
                                 <input type="text" placeholder="Subject" name="subjek" value="<?= $_SESSION['hubungi']['subjek'] ?? '' ?>" />
                                 <?php if (!empty($errors['subjek'])) :
                                     for ($i = 0; $i < count($errors['subjek']); $i++) : ?>

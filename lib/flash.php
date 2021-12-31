@@ -8,7 +8,7 @@ function create_flash($message, $type = 'success')
 function show_flash()
 {
 
-    $flash_session = $_SESSION['flash'] ? $_SESSION['flash'] : null;
+    $flash_session = $_SESSION['flash'] ?? null;
 
     if (!isset($flash_session)) {
         return;
