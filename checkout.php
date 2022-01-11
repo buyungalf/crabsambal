@@ -123,9 +123,11 @@ if ($process == 'login') {
     if (!validValue($nama)) {
         error_message('nama', 'nama tidak boleh kosong');
     }
+
     if (!validValue($alamat)) {
         error_message('alamat', 'alamat tidak boleh kosong');
     }
+
     if (!validValue($telpon)) {
         error_message('telpon', 'telpon tidak boleh kosong');
     }
@@ -145,6 +147,7 @@ if ($process == 'login') {
     if (!filter_var($email_register, FILTER_VALIDATE_EMAIL)) {
         error_message('email_register', 'email yang anda masukan tidak valid');
     }
+
     if (!preg_match("/^[a-zA-Z-' ]*$/", $nama)) {
         error_message('nama', 'Nama tidak boleh diisi dengan angka atau simbol');
     }

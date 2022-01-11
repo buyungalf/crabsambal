@@ -537,7 +537,6 @@ ol {
 
 .hero__text {
     text-align: center;
-    background: #ffffff;
     padding: 65px 70px 70px;
     position: relative;
 }
@@ -547,13 +546,12 @@ ol {
     top: 15px;
     height: calc(100% - 30px);
     width: calc(100% - 30px);
-    border: 1px dashed #8eca36;
     content: "";
     opacity: 0.3;
 }
 .hero__text h2 {
     font-size: 46px;
-    color: #111111;
+    color: #8eca36;
     line-height: 60px;
     font-weight: 700;
     font-style: italic;

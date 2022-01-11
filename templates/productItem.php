@@ -13,13 +13,10 @@
             </a>
         </h6>
         <div class="product__item__price" data-price="<?= $item['harga'] ?>"><?= "Rp " . format_rupiah($item['harga']) ?></div>
-        <form action="shop" method="GET">
-            <div class="cart_add">
-                <input type="hidden" name="act" value="add">
-                <input type="hidden" name="id_product" value="<?= $item['id_produk'] ?>">
-                <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;color: #111111;font-size: 16px;font-weight: 600;display: inline-block;border-bottom: 2px solid #8ECA36;padding-bottom: 4px;
-                                        " class="btn_add" type="submit">Add to cart</button>
-            </div>
-        </form>
+        <div class="cart_add">
+            <input type="hidden" name="act" value="add">
+            <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
+            <a class="btn_add" style="cursor: pointer;">Add to cart</a>
+        </div>
     </div>
 </div>
