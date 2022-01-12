@@ -37,7 +37,8 @@ $profile_result = mysqli_query(
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
-        <?php while ($banner = mysqli_fetch_array($banner_result)) : ?>
+        <?php while ($banner = mysqli_fetch_array($banner_result)) :
+        ?>
             <div class="hero__item set-bg" data-setbg="assets/img/banner/<?= $banner['gambar'] ?>">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
@@ -117,58 +118,37 @@ $profile_result = mysqli_query(
     </div>
     </div>
 </section>
-<!-- Product Section End -->
-
-<!-- Instagram Section Begin -->
-<!-- <section class="instagram spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 p-0">
-                <div class="instagram__text">
-                    <div class="section-title">
-                        <span>Follow us on instagram</span>
-                        <h2>Sweet moments are saved as memories.</h2>
-                    </div>
-                    <h5><i class="fa fa-instagram"></i> @sweetcake</h5>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <div class="instagram__pic">
-                            <img src="assets/img/instagram/instagram-1.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <div class="instagram__pic middle__pic">
-                            <img src="assets/img/instagram/instagram-2.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <div class="instagram__pic">
-                            <img src="assets/img/instagram/instagram-3.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <div class="instagram__pic">
-                            <img src="assets/img/instagram/instagram-4.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <div class="instagram__pic middle__pic">
-                            <img src="assets/img/instagram/instagram-5.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <div class="instagram__pic">
-                            <img src="assets/img/instagram/instagram-3.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- Instagram Section End -->
-
 <?php include './templates/footer.php' ?>
+
+<script>
+    var cartAdd = $(".cart_add")
+
+    cartAdd.on("click", ".btn_add", function() {
+        var $button = $(this)
+
+        const id_product = $button.parent().find("input[name='id_produk']").val()
+        const act = $button.parent().find("input[name='act']").val()
+
+        console.log(id_product, act)
+
+        $.ajax({
+            type: 'POST',
+            url: 'action/cart.php',
+            data: {
+                act,
+                id_product,
+            },
+            success: function(data) {
+                $('span#cartTotal').text(function(i, oldText) {
+                    return parseInt(oldText.trim()) + 1
+                });
+
+                $('.about').append(data)
+
+                $(".alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $(".alert").slideUp(500);
+                });
+            }
+        })
+    })
+</script>

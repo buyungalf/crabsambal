@@ -21,6 +21,7 @@ $cart_list_result = mysqli_query(
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
     <div class="container">
+        <?php show_flash() ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__text">
@@ -41,6 +42,7 @@ $cart_list_result = mysqli_query(
 <!-- Shopping Cart Section Begin -->
 <section class="shopping-cart spad">
     <div class="container">
+
         <div class="row">
             <div class="col-lg-8">
                 <div class="shopping__cart__table">
@@ -69,7 +71,6 @@ $cart_list_result = mysqli_query(
 
                             ?>
                                     <tr>
-
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
                                                 <img src="assets/img/product/<?= $product_list_item['gambar'] ?>" alt="<?= $product_list_item['nama_produk'] ?>" />
@@ -81,20 +82,17 @@ $cart_list_result = mysqli_query(
                                         </td>
                                         <td class="quantity__item">
                                             <div class="quantity">
-                                                <form action="cart" method="GET">
+                                                <form action="cart" method="GET" class="pro-qty">
                                                     <input type="hidden" name="act" value="update">
-                                                    <input type="hidden" name="id_product" value="<?= $product_list_item['id_orders_temp'] ?>">
-                                                    <input type="number" name="jumlah" min="1" max="<?= $product_list_item['stok_temp'] ?>" value="<?= $product_list_item['jumlah'] ?>" onchange="this.form.submit()">
+                                                    <input type="hidden" name="id_produk" value="<?= $product_list_item['id_orders_temp'] ?>">
+                                                    <input type="text" name="jumlah" min="1" max="<?= $product_list_item['stok_temp'] ?>" value="<?= $product_list_item['jumlah'] ?>">
                                                 </form>
                                             </div>
                                         </td>
                                         <td class="cart__price"><?= 'Rp. ' .  format_rupiah($subtotal) ?></td>
-                                        <td class="cart__close">
-                                            <form action="cart" method="GET">
-                                                <input type="hidden" name="act" value="delete">
-                                                <input type="hidden" name="id_product" value="<?= $product_list_item['id_orders_temp'] ?>">
-                                                <button class="btn btn-danger icon_close" style="padding: 5px; border-radius: 100%;" type="submit"></button>
-                                            </form>
+                                        <td class="cart__close" style="cursor: pointer;">
+                                            <input type="hidden" name="id_produk" value="<?= $product_list_item['id_orders_temp'] ?>">
+                                            <span class="icon_close"></span>
                                         </td>
                                     </tr>
                                 <?php endwhile;
@@ -131,3 +129,68 @@ $cart_list_result = mysqli_query(
 <!-- Shopping Cart Section End -->
 
 <?php include './templates/footer.php' ?>
+
+<script>
+    /*-------------------
+		Quantity change
+	--------------------- */
+    var proQty = $(".pro-qty")
+    proQty.prepend('<span class="dec qtybtn">-</span>')
+    proQty.append('<span class="inc qtybtn">+</span>')
+
+    proQty.on("click", ".qtybtn", function() {
+        var $button = $(this)
+
+        let oldValue = $button.parent().find("input[name='jumlah']").val()
+        const id_product = $button.parent().find("input[name='id_produk']").val()
+        const act = $button.parent().find("input[name='act']").val()
+
+        if ($button.hasClass("inc")) {
+            var newVal = parseFloat(oldValue) + 1
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1
+            } else {
+                newVal = 0
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: 'action/cart.php',
+            data: {
+                act: 'update',
+                id_product,
+                jumlah: newVal
+            },
+            success: function(data) {
+                $button.parent().find("input[name='jumlah']").val(newVal)
+                location.reload()
+            }
+        })
+
+    })
+
+    var cartDel = $('.cart__close')
+
+    cartDel.on('click', '.icon_close', function() {
+        $button = $(this)
+
+        const id_product = $button.parent().find("input[name='id_produk']").val()
+
+        $.ajax({
+            type: 'POST',
+            url: 'action/cart.php',
+            data: {
+                act: 'delete',
+                id_product,
+            },
+            success: function(data) {
+                location.reload()
+            }
+        })
+
+
+    })
+</script>
