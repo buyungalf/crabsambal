@@ -44,7 +44,7 @@
             <div class="offcanvas__cart__item">
                 <a href="cart">
                     <img src="assets/img/icon/cart.png" alt="">
-                    <span> <?= $cart['cartTotal'] !== null ? $cart['cartTotal'] : 0  ?></span>
+                    <span id="cartTotal"><?= $cart['cartTotal'] !== null ? $cart['cartTotal'] : 0  ?></span>
                 </a>
             </div>
         </div>
@@ -85,7 +85,7 @@
                                 <div class="header__top__right__cart">
                                     <a href="cart">
                                         <img src="assets/img/icon/cart.png" alt="" />
-                                        <span style="font-size: 1rem !important;
+                                        <span id="cartTotal" style="font-size: 1rem !important;
 												left: 2rem !important;
 												top: 0 !important;">
                                             <?= $cart['cartTotal'] !== null ? $cart['cartTotal'] : 0  ?>

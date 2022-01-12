@@ -14,7 +14,7 @@ $jumlah = strtolower(trim($_POST['jumlah'] ?? ''));
 
 
 if (validValue($act) && validValue($id_produk)) {
-    echo $act . $id_produk;
+
     switch ($act) {
         case 'add':
             $tgl_sekarang = date("Ymd");
@@ -26,7 +26,7 @@ if (validValue($act) && validValue($id_produk)) {
             $kemarin = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
 
             if ($stok == 0) {
-                create_flash('maaf produk habis', 'danger');
+                create_flash('maaf produk habis', 'danger', true);
             } else {
                 // check if the product is already
                 // in cart table for this session
@@ -43,17 +43,17 @@ if (validValue($act) && validValue($id_produk)) {
                 if ($result_check_product == 0) {
                     // put the product in cart table
                     mysqli_query($koneksi, "INSERT INTO orders_temp (id_produk, jumlah, id_session, tgl_order_temp, jam_order_temp, stok_temp) VALUES ('$id_produk', 1, '$sid', '$tgl_sekarang', '$jam_sekarang', '$stok')");
-                    create_flash('berhasil menambahkan produk ke keranjang');
+                    create_flash('berhasil menambahkan produk ke keranjang', 'success', true);
                 } else {
                     if ($check_product['jumlah'] >= $stok) {
-                        create_flash('Jumlah yang dibeli melebihi stok yang ada', 'danger');
+                        create_flash('Jumlah yang dibeli melebihi stok yang ada', 'danger', true);
                         if ($check_product['jumlah'] > $stok) {
                             mysqli_query($koneksi, "UPDATE orders_temp SET jumlah = {$stok} WHERE id_session ='$sid' AND id_produk='$id_produk'");
                         }
                     } else {
                         // update product quantity in cart table
                         mysqli_query($koneksi, "UPDATE orders_temp SET jumlah = jumlah + 1 WHERE id_session ='$sid' AND id_produk='$id_produk'");
-                        create_flash('berhasil menambahkan produk ke keranjang');
+                        create_flash('berhasil menambahkan produk ke keranjang', 'success', true);
                     }
                 }
             }

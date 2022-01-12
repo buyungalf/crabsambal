@@ -1,9 +1,39 @@
 <?php
-function create_flash($message, $type = 'success')
+function create_flash($message, $type = 'success', $client = false)
 {
-    // create the flash message
-    $_SESSION['flash'] = ['type' => $type, 'message' => $message];
+    if (!$client) {
+        // create the flash message
+        $_SESSION['flash'] = ['type' => $type, 'message' => $message];
+        return;
+    }
+    echo "
+        <div id='snackbar' class='alert alert-{$type} alert-dismissible fade show' role='alert'>
+        {$message}
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>
+
+        <style>
+            #snackbar {
+                visibility: hidden;
+                position: fixed;
+                z-index: 1;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                bottom: 4rem;
+            }
+
+            #snackbar.show {
+                visibility: visible;
+            }
+
+        </style>
+
+     
+        ";
 }
+
 
 function show_flash()
 {
@@ -97,4 +127,8 @@ function show_flash()
         }
     </style>
   ";
+}
+
+if (isset($_POST['show_flash'])) {
+    echo show_flash();
 }

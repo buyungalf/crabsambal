@@ -58,7 +58,6 @@ $profile_result = mysqli_query(
 <!-- About Section Begin -->
 <section class="about spad">
     <div class="container">
-        <?php show_flash() ?>
         <div class="row">
             <div class="col">
                 <div class="about__text">
@@ -140,7 +139,15 @@ $profile_result = mysqli_query(
                 id_product,
             },
             success: function(data) {
-                location.reload()
+                $('span#cartTotal').text(function(i, oldText) {
+                    return parseInt(oldText.trim()) + 1
+                });
+
+                $('.about').append(data)
+
+                $(".alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $(".alert").slideUp(500);
+                });
             }
         })
     })

@@ -14,8 +14,8 @@
 $query_category = "SELECT kategori.kategori_seo, kategori.nama_kategori FROM kategori";
 
 // handle sort by category and asd / dsc 
-$category = strtolower(trim($_GET['category'] ?? ''));
-$sort = strtolower(trim($_GET['sort'] ?? ''));
+$category = strtolower(trim($_POST['category'] ?? ''));
+$sort = strtolower(trim($_POST['sort'] ?? ''));
 
 // check valid sort
 $sort = validValue($sort) && !in_array($sort, ['asc', 'desc']) ?  'asc' : $sort;
@@ -59,7 +59,6 @@ if (validValue($search)) {
         produk.id_kategori=kategori.id_kategori WHERE produk.nama_produk LIKE '%{$search}%'";
 }
 
-
 // query result
 $category_result =  mysqli_query($koneksi, $query_category);
 $product_result = mysqli_query($koneksi, $query_product);
@@ -97,34 +96,30 @@ $product_result = mysqli_query($koneksi, $query_product);
                 <div class="col-lg-5 col-md-5">
                     <div class="shop__option__search">
                         <form action="shop" method="GET">
-                            <input type="text" name="search" placeholder="Search" value="<?= validValue($search) ? $search : '' ?>" />
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <input type="text" name="search" id="search" placeholder="Search" value="<?= validValue($search) ? $search : '' ?>" />
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div class="row">
 
-                        <form action="shop" method="GET">
-                            <div class="shop__option__right" style="display: flex;align-items: stretch; justify-content: end;">
+                        <div class="shop__option__right container-fluid d-flex justify-content-around justify-content-md-end ">
 
-                                <select name="category">
-                                    <option value="">Categories</option>
-                                    <?php while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
-                                        <option value="<?= $categoryItem['kategori_seo'] ?>" <?= isset($category) && $category === $categoryItem['kategori_seo'] ? 'selected' : '' ?>>
-                                            <?= $categoryItem['nama_kategori'] ?>
-                                        </option>
-                                    <?php endwhile ?>
-                                </select>
-                                <select name="sort">
-                                    <option value="">Default sorting</option>
-                                    <option value="asc" <?= isset($sort) && $sort === 'asc' ? 'selected' : '' ?>>A to Z</option>
-                                    <option value="desc" <?= isset($sort) && $sort === 'desc' ? 'selected' : '' ?>>Z to A</option>
-                                </select>
-                                <button class="site-btn primary-btn" style="padding: 11px 18px ; margin: 0 4px" type="submit">Filter</button>
-                                <span class="site-btn primary-btn" id="reset" style="padding: 11px 18px; margin: 0 4px; cursor: pointer;">Reset</span>
-                            </div>
-                        </form>
+                            <select id="category">
+                                <option value="">kategori</option>
+                                <?php while ($categoryItem = mysqli_fetch_array($category_result)) : ?>
+                                    <option value="<?= $categoryItem['kategori_seo'] ?>" <?= isset($category) && $category === $categoryItem['kategori_seo'] ? 'selected' : '' ?>>
+                                        <?= $categoryItem['nama_kategori'] ?>
+                                    </option>
+                                <?php endwhile ?>
+                            </select>
+                            <select id="sort">
+                                <option value="">urutan</option>
+                                <option value="asc" <?= isset($sort) && $sort === 'asc' ? 'selected' : '' ?>>A - Z</option>
+                                <option value="desc" <?= isset($sort) && $sort === 'desc' ? 'selected' : '' ?>>Z - A</option>
+                            </select>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,25 +143,9 @@ $product_result = mysqli_query($koneksi, $query_product);
                     </div>
                 </div>
             <?php }
+
             ?>
         </div>
-        <!-- <div class="shop__last__option">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="shop__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><span class="arrow_carrot-right"></span></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="shop__last__text">
-                        <p>Showing 1-9 of 10 results</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </section>
 <!-- Shop Section End -->
@@ -188,5 +167,86 @@ $product_result = mysqli_query($koneksi, $query_product);
     $(".alert").on("click", function() {
         sessionStorage.removeItem('flash')
         $(this).alert('close')
+    })
+
+    var cartAdd = $(".cart_add")
+
+    cartAdd.on("click", ".btn_add", function() {
+        var $button = $(this)
+
+        const id_product = $button.parent().find("input[name='id_produk']").val()
+        const act = $button.parent().find("input[name='act']").val()
+
+        $.ajax({
+            type: 'POST',
+            url: 'action/cart.php',
+            data: {
+                act,
+                id_product,
+            },
+            success: function(data) {
+
+                $('span#cartTotal').text(function(i, oldText) {
+                    return parseInt(oldText.trim()) + 1
+                });
+
+                $('.breadcrumb-option').append(data)
+
+                $(".alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $(".alert").slideUp(500);
+                });
+            }
+        })
+    })
+
+    $("#search").keyup(function() {
+
+        // Retrieve the input field text and reset the count to zero
+        var search = $(this).val()
+
+        var regex = new RegExp(search, "i"); // Create a regex variable outside the loop statement
+
+        // Loop through the comment list
+        $("#row #item").each(function() {
+
+            var produk = $(this)
+
+            console.log(produk.text().search(regex))
+            // If the list item does not contain the text phrase fade it out
+            if (produk.text().trim().search(regex) < 0) { // use the variable here
+                produk.fadeOut();
+            } else {
+                produk.show();
+            }
+        });
+
+
+    });
+
+    $("select").on("change", function() {
+        const category = $("#category").val()
+        const sort = $("#sort").val()
+
+        let name = this.name
+        let value = this.value
+
+        let action = "default"
+        const row = $("#row")
+
+        let data = {
+            action: name !== null ? "filter" : action.toLowerCase().trim(),
+            category: category.toLowerCase().trim(),
+            sort: sort.toLowerCase().trim(),
+        }
+
+        $.ajax({
+            url: "action/fetch_data.php",
+            method: "POST",
+            data,
+            success: function(data) {
+                row.html(data)
+            },
+
+        })
     })
 </script>
