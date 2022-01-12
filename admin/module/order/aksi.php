@@ -24,8 +24,9 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])) {
             $id_orders = $_POST['id_orders'];
             $tgl_order = $_POST['tgl_order'];
             $jam_order = $_POST['jam_order'];
+            $level_order = $_SESSION['level'];
 
-            $query = mysqli_query($koneksi, "INSERT INTO orders (id_orders, status_order, tgl_order, jam_order, id_kustomer) VALUES ('$id_orders', 'Baru', '$tgl_order', '$jam_order', $id_kustomer)");
+            $query = mysqli_query($koneksi, "INSERT INTO orders (id_orders, status_order, tgl_order, jam_order, id_kustomer, level_order) VALUES ('$id_orders', 'Baru', '$tgl_order', '$jam_order', $id_kustomer, '$level_order')");
             if($query) {
                 echo"<script> alert('Order berhasil!'); window.location = '$admin_url'+'module/order/nota.php?id_orders='+'$id_orders'; </script>"; 
             } else {

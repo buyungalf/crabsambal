@@ -8,6 +8,7 @@ $id_orders = $_GET['id_orders'];
 $query = mysqli_query($koneksi, "SELECT * FROM orders a JOIN kustomer b ON a.id_kustomer = b.id_kustomer JOIN kota c ON b.id_kota = c.id_kota WHERE a.id_orders = $id_orders");
 $i=1;
 $item=mysqli_fetch_array($query);
+$level_order = $item['level_order'];
 
 ?>
 <html>
@@ -94,14 +95,21 @@ $i=1;
 $total = 0;
 $totalberat = 0;
 while($item=mysqli_fetch_array($query)){
-$disc        = ($item['diskon']/100)*$item['harga'];
-$hargadisc   = number_format(($item['harga']-$disc),0,",","."); 
-$subtotal    = ($item['harga']-$disc) * $item['jumlah'];
+
+if ($level_order == 'reseller') {
+	$harga_brg = $item['harga_reseller'];
+} else {
+	$harga_brg = $item['harga'];
+}
+
+$disc        = ($item['diskon']/100)*$harga_brg;
+$hargadisc   = number_format(($harga_brg-$disc),0,",","."); 
+$subtotal    = ($harga_brg-$disc) * $item['jumlah'];
 
 $total       = $total + $subtotal;
 $subtotal_rp = format_rupiah($subtotal);    
 $total_rp    = format_rupiah($total);    
-$harga       = format_rupiah($item['harga']);
+$harga       = format_rupiah($harga_brg);
 
 $subtotalberat = $item['berat'] * $item['jumlah']; // total berat per item produk 
 $totalberat  = $totalberat + $subtotalberat; // grand total berat all produk yang dibeli                      
@@ -110,7 +118,7 @@ $totalberat  = $totalberat + $subtotalberat; // grand total berat all produk yan
 <td><?= $item['nama_produk'] ?></td>
 <td align="center"><?= $item['berat'] ?></td>
 <td><?= $item['jumlah'] ?></td>
-<td class="cost">Rp<?= format_rupiah($item['harga']) ?></td>
+<td class="cost">Rp<?= format_rupiah($harga_brg) ?></td>
 <td class="cost">Rp <?= $subtotal_rp ?></td>
 </tr>
 <?php } ?>

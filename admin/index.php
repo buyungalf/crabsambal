@@ -45,7 +45,7 @@
           <div class="col-8">
             <div class="icheck-primary">
               <p class="mb-1">
-                <a href="reseller.php">Login Reseller</a>
+                <a href="/crabsambal/reseller/">Login Reseller</a>
               </p>
               <p class="mb-1">
                 <a href="forgot_password.php">Lupa Password?</a>

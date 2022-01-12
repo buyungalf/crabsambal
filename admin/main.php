@@ -139,6 +139,11 @@ if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
         } else if ($_GET['module'] == 'password') {
             include "module/ganti_password/password.php";
 
+        } else if ($_GET['module'] == 'laporan') {
+            include "module/laporan/laporan1.php";   
+        } else if ($_GET['module'] == 'cetak_laporan') {
+            include "module/laporan/content.php"; 
+
         }  else {
             include "module/home/home.php";
         }

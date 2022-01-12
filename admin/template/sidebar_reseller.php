@@ -2,9 +2,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="asset/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
       
-      <span class="brand-text font-weight-light">Admin</span>
+      <span class="brand-text font-weight-light">Reseller</span>
     </a>
 
     <!-- Sidebar -->
@@ -45,7 +45,7 @@
           </li>
           <li class="nav-header">MAIN</li>
           <?php
-            $query = mysqli_query($koneksi, "SELECT * FROM modul WHERE id_modul=42 or id_modul=49 or id_modul=59");
+            $query = mysqli_query($koneksi, "SELECT * FROM modul WHERE id_modul=42 or id_modul=49 or id_modul=59 or id_modul=52");
             $i=1;
             while($mod=mysqli_fetch_array($query)){                              
           ?>

@@ -56,7 +56,7 @@
               <tr>
                 <td align="right">
                   <div class="input-group col-12" >
-                    <select name="status" class="form-control select2" style="width: 100%;">
+                    <select name="status" class="form-control" style="width: 100%;">
                       <option value="Lunas">Lunas</option>
                       <option value="Baru">Baru</option>
                       <option value="Batal">Batal</option>
@@ -97,10 +97,15 @@
           $mulai = date("Y-m-d", strtotime($_GET['mulai']));
           $selesai = date("Y-m-d", strtotime($_GET['selesai']));
           $status = $_GET['status'];
-            $query = mysqli_query($koneksi, "SELECT c.id_orders as faktur,DATE_FORMAT(c.tgl_order, '%Y-%m-%d') as tanggal, nama_produk,jumlah,harga FROM produk a JOIN orders_detail b ON a.id_produk=b.id_produk JOIN orders c ON b.id_orders=c.id_orders WHERE c.status_order='$status' AND c.tgl_order BETWEEN '$mulai' AND '$selesai'");
+            $query = mysqli_query($koneksi, "SELECT c.id_orders as faktur,DATE_FORMAT(c.tgl_order, '%Y-%m-%d') as tanggal, nama_produk,jumlah,harga,level_order,harga_reseller FROM produk a JOIN orders_detail b ON a.id_produk=b.id_produk JOIN orders c ON b.id_orders=c.id_orders WHERE c.status_order='$status' AND c.tgl_order BETWEEN '$mulai' AND '$selesai'");
             $i=1;
-            while($item=mysqli_fetch_array($query)){  
-            $harga = $item['harga']*$item['jumlah'];                            
+            while($item=mysqli_fetch_array($query)){
+            if ($item['level_order'] == 'reseller') {
+              $harga_brg = $item['harga_reseller'];
+            } else {
+              $harga_brg = $item['harga'];
+            }
+            $harga = $harga_brg*$item['jumlah'];                            
           ?>
           <tr>
             <td><?= $item['faktur'] ?></td>
